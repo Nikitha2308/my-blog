@@ -1,0 +1,1077 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nikitha B - Jr. Software Developer Journey</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Cormorant+Garamond:wght@300;400;600;700&family=DM+Sans:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --primary: #ff6b6b;
+        --secondary: #4ecdc4;
+        --accent: #ffe66d;
+        --dark: #1a1a2e;
+        --light: #f8f9fa;
+        --purple: #9b59b6;
+        --blue: #3498db;
+        --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        --gradient-4: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+      }
+
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+
+      body {
+        font-family: "DM Sans", sans-serif;
+        background: var(--dark);
+        color: var(--light);
+        overflow-x: hidden;
+        line-height: 1.6;
+      }
+
+      /* Animated Background */
+      .bg-animation { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; opacity: 0.15; }
+      .bg-animation span {
+        position: absolute; width: 2px; height: 2px;
+        background: var(--secondary); animation: float 25s linear infinite; border-radius: 50%;
+      }
+      @keyframes float {
+        0% { transform: translateY(0) translateX(0) scale(1); opacity: 0; }
+        10% { opacity: 1; }
+        90% { opacity: 1; }
+        100% { transform: translateY(-100vh) translateX(50px) scale(1.5); opacity: 0; }
+      }
+
+      /* Header */
+      header {
+        padding: 1.5rem 5%;
+        display: flex; justify-content: space-between; align-items: center;
+        position: sticky; top: 0;
+        background: rgba(26, 26, 46, 0.95);
+        backdrop-filter: blur(10px);
+        z-index: 100;
+        animation: slideDown 0.8s ease;
+        border-bottom: 1px solid rgba(78, 205, 196, 0.1);
+      }
+      @keyframes slideDown {
+        from { transform: translateY(-100%); opacity: 0; }
+        to { transform: translateY(0); opacity: 1; }
+      }
+      .logo {
+        font-family: "Space Mono", monospace; font-size: 1.5rem; font-weight: 700;
+        background: var(--gradient-1); -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent; background-clip: text;
+      }
+      nav a {
+        margin-left: 1.5rem; color: var(--light); text-decoration: none;
+        font-weight: 500; position: relative; transition: color 0.3s ease; font-size: 0.9rem;
+      }
+      nav a::after {
+        content: ""; position: absolute; bottom: -5px; left: 0;
+        width: 0; height: 2px; background: var(--secondary); transition: width 0.3s ease;
+      }
+      nav a:hover::after { width: 100%; }
+      nav a:hover { color: var(--secondary); }
+
+      /* Hero Section */
+      .hero {
+        min-height: 100vh; display: flex; align-items: center;
+        justify-content: center; padding: 2rem 5%; position: relative;
+      }
+      .hero-content {
+        max-width: 1200px; width: 100%;
+        display: grid; grid-template-columns: 1fr 1fr;
+        gap: 4rem; align-items: center;
+      }
+      .hero-text h1 {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 4.5rem; font-weight: 700; line-height: 1.1;
+        margin-bottom: 1.5rem; animation: fadeInUp 1s ease 0.3s both;
+      }
+      .hero-text h1 span {
+        background: var(--gradient-2); -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent; background-clip: text;
+      }
+      .hero-text p {
+        font-size: 1.2rem; color: rgba(248, 249, 250, 0.8);
+        margin-bottom: 1.5rem; animation: fadeInUp 1s ease 0.5s both;
+      }
+      .hero-badges {
+        display: flex; flex-wrap: wrap; gap: 0.5rem;
+        margin-bottom: 2rem; animation: fadeInUp 1s ease 0.6s both;
+      }
+      .hero-badge {
+        background: rgba(255,255,255,0.07); border: 1px solid rgba(78,205,196,0.3);
+        color: var(--secondary); padding: 0.4rem 0.9rem; border-radius: 20px; font-size: 0.85rem;
+      }
+      .cta-button {
+        display: inline-block; padding: 1rem 2.5rem;
+        background: var(--gradient-1); color: white;
+        text-decoration: none; border-radius: 50px; font-weight: 600;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        animation: fadeInUp 1s ease 0.7s both; margin-right: 1rem;
+      }
+      .cta-button:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4); }
+      .cta-button.outline {
+        background: transparent; border: 2px solid var(--secondary);
+        color: var(--secondary);
+      }
+      .cta-button.outline:hover { background: var(--secondary); color: var(--dark); box-shadow: 0 10px 30px rgba(78,205,196,0.3); }
+      @keyframes fadeInUp {
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      .hero-visual { position: relative; animation: fadeIn 1s ease 0.5s both; }
+      @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+      .code-block {
+        background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+        border-radius: 15px; padding: 2rem; font-family: "Space Mono", monospace;
+        position: relative; overflow: hidden;
+      }
+      .code-block::before {
+        content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+        background: var(--gradient-3); opacity: 0.05; z-index: -1;
+      }
+      .code-dots { display: flex; gap: 0.4rem; margin-bottom: 1.2rem; }
+      .code-dot { width: 12px; height: 12px; border-radius: 50%; }
+      .code-dot:nth-child(1) { background: #ff5f57; }
+      .code-dot:nth-child(2) { background: #febc2e; }
+      .code-dot:nth-child(3) { background: #28c840; }
+      .code-line { margin: 0.5rem 0; opacity: 0; animation: typeLine 0.5s ease forwards; font-size: 0.9rem; }
+      .code-line:nth-child(2) { animation-delay: 1s; color: var(--primary); }
+      .code-line:nth-child(3) { animation-delay: 1.2s; color: var(--secondary); }
+      .code-line:nth-child(4) { animation-delay: 1.4s; color: var(--accent); }
+      .code-line:nth-child(5) { animation-delay: 1.6s; color: var(--purple); }
+      .code-line:nth-child(6) { animation-delay: 1.8s; color: var(--blue); }
+      .code-line:nth-child(7) { animation-delay: 2s; color: #43e97b; }
+      .code-line:nth-child(8) { animation-delay: 2.2s; color: var(--light); }
+      @keyframes typeLine { to { opacity: 1; } }
+
+      /* Section Title */
+      .section-title {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 3.5rem; text-align: center; margin-bottom: 1rem;
+        background: var(--gradient-2); -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent; background-clip: text;
+      }
+      .section-subtitle {
+        text-align: center; max-width: 700px; margin: 0 auto 3.5rem;
+        color: rgba(248, 249, 250, 0.7); font-size: 1.05rem;
+      }
+
+      /* Timeline Section */
+      .timeline-section { padding: 5rem 5%; max-width: 1200px; margin: 0 auto; }
+      .timeline { position: relative; padding: 2rem 0; }
+      .timeline::before {
+        content: ""; position: absolute; left: 50%; transform: translateX(-50%);
+        width: 3px; height: 100%; background: var(--gradient-1);
+      }
+      .timeline-item {
+        position: relative; margin-bottom: 4rem; display: flex;
+        opacity: 0; animation: slideInTimeline 0.8s ease forwards;
+      }
+      .timeline-item:nth-child(odd) { justify-content: flex-start; }
+      .timeline-item:nth-child(even) { justify-content: flex-end; }
+      .timeline-item:nth-child(1) { animation-delay: 0.1s; }
+      .timeline-item:nth-child(2) { animation-delay: 0.2s; }
+      .timeline-item:nth-child(3) { animation-delay: 0.3s; }
+      .timeline-item:nth-child(4) { animation-delay: 0.4s; }
+      .timeline-item:nth-child(5) { animation-delay: 0.5s; }
+      @keyframes slideInTimeline {
+        from { opacity: 0; transform: translateX(-50px); }
+        to { opacity: 1; transform: translateX(0); }
+      }
+      .timeline-content {
+        width: 45%; background: rgba(255,255,255,0.05);
+        padding: 2rem; border-radius: 15px;
+        border: 1px solid rgba(255,255,255,0.1);
+        position: relative; transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      .timeline-content:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+      .timeline-content.highlight-tl { border-color: rgba(67, 233, 123, 0.3); }
+      .timeline-dot {
+        position: absolute; left: 50%; transform: translateX(-50%);
+        width: 22px; height: 22px; background: var(--secondary);
+        border-radius: 50%; border: 4px solid var(--dark); z-index: 10;
+      }
+      .timeline-dot.parttime { background: #43e97b; }
+      .timeline-year { font-family: "Space Mono", monospace; font-size: 0.95rem; color: var(--accent); margin-bottom: 0.4rem; }
+      .timeline-type-badge {
+        display: inline-block; font-size: 0.75rem; font-weight: 700;
+        padding: 0.25rem 0.7rem; border-radius: 20px; margin-bottom: 0.8rem;
+        background: rgba(67,233,123,0.15); color: #43e97b; border: 1px solid rgba(67,233,123,0.3);
+      }
+      .timeline-type-badge.fulltime { background: rgba(78,205,196,0.15); color: var(--secondary); border-color: rgba(78,205,196,0.3); }
+      .timeline-type-badge.current { background: rgba(255,230,109,0.15); color: var(--accent); border-color: rgba(255,230,109,0.3); }
+      .timeline-type-badge.future { background: rgba(155,89,182,0.15); color: var(--purple); border-color: rgba(155,89,182,0.3); }
+      .timeline-content h3 { font-family: "Cormorant Garamond", serif; font-size: 1.7rem; margin-bottom: 0.4rem; color: var(--secondary); }
+      .timeline-content h4 { font-size: 1rem; color: var(--primary); margin-bottom: 1rem; }
+      .timeline-content ul { list-style: none; padding-left: 0; }
+      .timeline-content li { padding-left: 1.5rem; position: relative; margin-bottom: 0.5rem; color: rgba(248,249,250,0.8); font-size: 0.95rem; }
+      .timeline-content li::before { content: "▹"; position: absolute; left: 0; color: var(--secondary); }
+
+      /* Part-time highlight box inside timeline */
+      .parttime-detail {
+        margin-top: 1.2rem; padding: 1rem 1.2rem;
+        background: rgba(67,233,123,0.05); border-radius: 10px;
+        border-left: 3px solid #43e97b;
+      }
+      .parttime-detail h5 { color: #43e97b; font-size: 0.95rem; margin-bottom: 0.5rem; }
+      .parttime-detail ul { margin-top: 0.3rem; }
+      .parttime-detail ul li::before { color: #43e97b; }
+      .parttime-detail + .parttime-detail { margin-top: 0.8rem; }
+
+      /* Soft skills chips */
+      .soft-skills { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; }
+      .soft-chip {
+        background: rgba(102,126,234,0.12); border: 1px solid rgba(102,126,234,0.3);
+        color: #a29bfe; padding: 0.3rem 0.7rem; border-radius: 15px; font-size: 0.8rem;
+      }
+
+      /* Skills Section */
+      .skills-section { padding: 5rem 5%; background: rgba(255,255,255,0.02); }
+      .skills-grid {
+        max-width: 1200px; margin: 0 auto;
+        display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+      }
+      .skill-card {
+        background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+        border-radius: 15px; padding: 2rem;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      .skill-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(78,205,196,0.2); }
+      .skill-icon {
+        width: 60px; height: 60px; background: var(--gradient-1);
+        border-radius: 12px; display: flex; align-items: center;
+        justify-content: center; font-size: 2rem; margin-bottom: 1.5rem;
+      }
+      .skill-card h3 { font-family: "Cormorant Garamond", serif; font-size: 1.8rem; margin-bottom: 0.5rem; color: var(--secondary); }
+      .skill-card p { color: rgba(248,249,250,0.7); font-size: 0.95rem; margin-bottom: 0.5rem; }
+      .tech-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; }
+      .tech-tag {
+        background: rgba(78,205,196,0.1); color: var(--secondary);
+        padding: 0.4rem 0.8rem; border-radius: 20px; font-size: 0.82rem;
+        border: 1px solid rgba(78,205,196,0.3);
+      }
+
+      /* Certifications */
+      .certifications-section { padding: 5rem 5%; max-width: 1200px; margin: 0 auto; }
+      .certs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 2rem; }
+      .cert-card {
+        background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+        border-radius: 15px; padding: 2rem; transition: all 0.3s ease;
+      }
+      .cert-card:hover { transform: translateY(-5px); border-color: var(--secondary); box-shadow: 0 10px 30px rgba(78,205,196,0.2); }
+      .cert-badge { font-size: 2.5rem; margin-bottom: 1rem; }
+      .cert-card h3 { font-family: "Cormorant Garamond", serif; font-size: 1.5rem; color: var(--accent); margin-bottom: 0.4rem; }
+      .cert-provider { color: var(--secondary); font-size: 0.85rem; margin-bottom: 0.8rem; font-weight: 600; }
+      .cert-card p { color: rgba(248,249,250,0.8); margin-bottom: 1rem; line-height: 1.6; font-size: 0.93rem; }
+      .cert-skills { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.5rem; }
+      .skill-pill {
+        background: rgba(255,107,107,0.1); color: var(--primary);
+        padding: 0.3rem 0.7rem; border-radius: 15px; font-size: 0.78rem;
+        border: 1px solid rgba(255,107,107,0.3);
+      }
+
+      /* Achievements */
+      .achievements-section { padding: 5rem 5%; background: rgba(255,255,255,0.02); }
+      .achievements-container { max-width: 1200px; margin: 0 auto; display: grid; gap: 2rem; }
+      .big-achievement {
+        background: var(--gradient-1); padding: 3rem; border-radius: 20px;
+        text-align: center; color: white;
+      }
+      .achievement-icon { font-size: 4rem; margin-bottom: 1rem; }
+      .big-achievement h3 { font-family: "Cormorant Garamond", serif; font-size: 2.5rem; margin-bottom: 0.5rem; }
+      .achievement-year { font-family: "Space Mono", monospace; opacity: 0.9; margin-bottom: 1rem; }
+      .achievement-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 2rem; }
+      .stat { text-align: center; }
+      .stat-number { font-size: 2.8rem; font-weight: 700; font-family: "Space Mono", monospace; }
+      .stat-label { font-size: 0.9rem; opacity: 0.9; margin-top: 0.5rem; }
+      .achievement-mini-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; }
+      .mini-achievement {
+        background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+        padding: 1.5rem; border-radius: 15px; transition: all 0.3s ease;
+      }
+      .mini-achievement:hover { transform: translateY(-5px); border-color: var(--accent); }
+      .mini-icon { font-size: 2rem; margin-bottom: 0.5rem; }
+      .mini-achievement h4 { color: var(--secondary); margin-bottom: 0.5rem; font-size: 1rem; }
+      .mini-achievement p { color: rgba(248,249,250,0.7); font-size: 0.9rem; }
+
+      /* Tech Deep Dive */
+      .tech-deep-dive-section { padding: 5rem 5%; max-width: 1200px; margin: 0 auto; }
+      .tech-categories { display: grid; gap: 2rem; }
+      .tech-category {
+        background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+        border-radius: 15px; padding: 2rem;
+      }
+      .tech-category h3 { font-family: "Cormorant Garamond", serif; font-size: 2rem; color: var(--accent); margin-bottom: 1.5rem; }
+      .tech-items { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; }
+      .tech-item {
+        background: rgba(255,255,255,0.03); padding: 1rem; border-radius: 10px;
+        border: 1px solid rgba(255,255,255,0.05); transition: all 0.3s ease;
+      }
+      .tech-item:hover { border-color: var(--secondary); background: rgba(78,205,196,0.05); }
+      .tech-item strong { color: var(--secondary); display: block; margin-bottom: 0.3rem; }
+      .tech-item span { color: rgba(248,249,250,0.7); font-size: 0.88rem; }
+
+      /* Experience Highlights */
+      .experience-highlights-section { padding: 5rem 5%; background: rgba(255,255,255,0.02); }
+      .highlights-grid { max-width: 1200px; margin: 0 auto; display: grid; gap: 2rem; }
+      .highlight-card {
+        background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+        border-radius: 15px; padding: 2.5rem; position: relative; padding-left: 5rem;
+      }
+      .highlight-number {
+        position: absolute; left: 1.5rem; top: 2rem;
+        font-size: 3.5rem; font-weight: 700; color: rgba(78,205,196,0.15);
+        font-family: "Space Mono", monospace;
+      }
+      .highlight-card h3 { font-family: "Cormorant Garamond", serif; font-size: 2rem; color: var(--secondary); margin-bottom: 0.8rem; }
+      .highlight-card p { color: rgba(248,249,250,0.8); font-size: 0.95rem; }
+      .highlight-points { list-style: none; padding-left: 0; margin-top: 1rem; }
+      .highlight-points li { padding-left: 1.5rem; position: relative; margin-bottom: 0.5rem; color: rgba(248,249,250,0.8); font-size: 0.95rem; }
+      .highlight-points li::before { content: "✓"; position: absolute; left: 0; color: var(--accent); }
+
+      /* Blog Section */
+      .blog-section { padding: 5rem 5%; max-width: 1200px; margin: 0 auto; }
+      .blog-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 2rem; }
+      .blog-card {
+        background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+        border-radius: 15px; padding: 2rem; transition: all 0.3s ease; cursor: pointer;
+      }
+      .blog-card:hover { transform: translateY(-5px); border-color: var(--primary); box-shadow: 0 10px 30px rgba(255,107,107,0.2); }
+      .blog-tag {
+        display: inline-block; background: var(--gradient-2); color: white;
+        padding: 0.35rem 0.9rem; border-radius: 20px; font-size: 0.78rem;
+        font-weight: 600; margin-bottom: 1rem;
+      }
+      .blog-card h3 { font-family: "Cormorant Garamond", serif; font-size: 1.5rem; color: var(--light); margin-bottom: 0.8rem; }
+      .blog-excerpt { color: rgba(248,249,250,0.7); line-height: 1.6; margin-bottom: 1rem; font-size: 0.93rem; }
+      .blog-meta { display: flex; gap: 0.5rem; color: rgba(248,249,250,0.45); font-size: 0.82rem; }
+
+      /* Stats Section */
+      .stats-section { padding: 5rem 5%; background: rgba(255,255,255,0.02); }
+      .stats-grid {
+        max-width: 1200px; margin: 0 auto;
+        display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 2rem; margin-top: 3rem;
+      }
+      .stat-box {
+        text-align: center; padding: 2rem;
+        background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+        border-radius: 15px; transition: all 0.3s ease;
+      }
+      .stat-box:hover { transform: scale(1.05); border-color: var(--accent); }
+      .stat-value {
+        font-size: 3rem; font-weight: 700;
+        background: var(--gradient-2); -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent; background-clip: text;
+        font-family: "Space Mono", monospace; margin-bottom: 0.5rem;
+      }
+      .stat-description { color: rgba(248,249,250,0.7); font-size: 0.9rem; }
+
+      /* Projects Section */
+      .projects-section { padding: 5rem 5%; max-width: 1200px; margin: 0 auto; }
+      .project-card {
+        background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+        border-radius: 15px; padding: 2.5rem; margin-bottom: 2rem;
+        transition: transform 0.3s ease, border-color 0.3s ease;
+      }
+      .project-card:hover { transform: translateX(8px); border-color: rgba(78,205,196,0.3); }
+      .project-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.5rem; }
+      .project-card h3 { font-family: "Cormorant Garamond", serif; font-size: 1.9rem; color: var(--accent); }
+      .project-card p { color: rgba(248,249,250,0.8); font-size: 0.95rem; margin-bottom: 1rem; }
+      .project-type {
+        background: var(--gradient-2); color: white;
+        padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.82rem; font-weight: 600;
+        white-space: nowrap;
+      }
+
+      /* Contact Section */
+      .contact-section { padding: 5rem 5%; background: rgba(255,255,255,0.02); text-align: center; }
+      .contact-links { display: flex; justify-content: center; gap: 1.5rem; margin-top: 2rem; flex-wrap: wrap; }
+      .contact-link {
+        padding: 0.9rem 1.8rem;
+        background: rgba(255,255,255,0.05); border: 2px solid var(--secondary);
+        color: var(--secondary); text-decoration: none;
+        border-radius: 50px; font-weight: 600; transition: all 0.3s ease;
+        display: flex; align-items: center; gap: 0.5rem;
+      }
+      .contact-link:hover { background: var(--secondary); color: var(--dark); transform: translateY(-5px); box-shadow: 0 10px 30px rgba(78,205,196,0.3); }
+      .contact-link.linkedin { border-color: #0077b5; color: #0077b5; }
+      .contact-link.linkedin:hover { background: #0077b5; color: white; box-shadow: 0 10px 30px rgba(0,119,181,0.3); }
+
+      .social-links { margin-top: 4rem; }
+      .social-links h3 { margin-bottom: 1.5rem; color: var(--secondary); font-size: 1.4rem; }
+      .social-icons { display: flex; justify-content: center; gap: 1.5rem; }
+      .social-icon {
+        width: 52px; height: 52px; border-radius: 50%;
+        background: rgba(255,255,255,0.05); border: 2px solid rgba(255,255,255,0.1);
+        display: flex; align-items: center; justify-content: center;
+        color: var(--secondary); transition: all 0.3s ease; text-decoration: none;
+      }
+      .social-icon:hover { background: var(--secondary); color: var(--dark); border-color: var(--secondary); transform: translateY(-5px); }
+      .social-icon.linkedin-icon { color: #0077b5; }
+      .social-icon.linkedin-icon:hover { background: #0077b5; border-color: #0077b5; color: white; }
+
+      /* Footer */
+      footer {
+        padding: 2.5rem 5%; text-align: center;
+        color: rgba(248,249,250,0.5);
+        border-top: 1px solid rgba(255,255,255,0.08);
+      }
+      footer a { color: var(--secondary); text-decoration: none; }
+      footer a:hover { text-decoration: underline; }
+
+      /* Scroll Animations */
+      .reveal { opacity: 0; transform: translateY(50px); transition: all 0.8s ease; }
+      .reveal.active { opacity: 1; transform: translateY(0); }
+
+      /* Responsive */
+      @media (max-width: 968px) {
+        .hero-content { grid-template-columns: 1fr; gap: 2rem; }
+        .hero-text h1 { font-size: 3rem; }
+        .timeline::before { left: 0; }
+        .timeline-item { justify-content: flex-start !important; }
+        .timeline-content { width: calc(100% - 40px); margin-left: 40px; }
+        .timeline-dot { left: 0; transform: translateX(0); }
+        nav { display: none; }
+        .achievement-stats { grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+        .stat-number { font-size: 2rem; }
+        .highlight-card { padding-left: 2rem; }
+        .highlight-number { position: static; margin-bottom: 1rem; }
+      }
+      @media (max-width: 640px) {
+        .hero-text h1 { font-size: 2.5rem; }
+        .section-title { font-size: 2.5rem; }
+        .stats-grid { grid-template-columns: repeat(2, 1fr); }
+        .achievement-stats { grid-template-columns: 1fr; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="bg-animation">
+      <span style="left: 10%; animation-delay: 0s"></span>
+      <span style="left: 20%; animation-delay: 2s"></span>
+      <span style="left: 30%; animation-delay: 4s"></span>
+      <span style="left: 40%; animation-delay: 1s"></span>
+      <span style="left: 50%; animation-delay: 3s"></span>
+      <span style="left: 60%; animation-delay: 5s"></span>
+      <span style="left: 70%; animation-delay: 2.5s"></span>
+      <span style="left: 80%; animation-delay: 4.5s"></span>
+      <span style="left: 90%; animation-delay: 1.5s"></span>
+    </div>
+
+    <header>
+      <div class="logo">&lt;/Nikitha&gt;</div>
+      <nav>
+        <a href="#journey">Journey</a>
+        <a href="#skills">Skills</a>
+        <a href="#certifications">Certifications</a>
+        <a href="#projects">Projects</a>
+        <a href="#insights">Insights</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <!-- ═══════════════════════ HERO ═══════════════════════ -->
+    <section class="hero">
+      <div class="hero-content">
+        <div class="hero-text">
+          <h1>Hi, I'm <span>Nikitha B</span></h1>
+          <p>Jr. Software Developer · Mobile App Specialist · Backend Enthusiast</p>
+          <div class="hero-badges">
+            <span class="hero-badge">React Native</span>
+            <span class="hero-badge">Nest.js</span>
+            <span class="hero-badge">Flutter</span>
+            <span class="hero-badge">MongoDB</span>
+            <span class="hero-badge">Kafka</span>
+            <span class="hero-badge">Figma</span>
+          </div>
+          <p style="font-size:1rem;">From college gold medalist to building production-ready mobile applications — this is my journey from academic excellence to real-world development.</p>
+          <div style="margin-top:2rem;">
+            <a href="#journey" class="cta-button">Explore My Journey</a>
+            <a href="https://www.linkedin.com/in/nikitha-nikitha" target="_blank" class="cta-button outline">LinkedIn Profile</a>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="code-block">
+            <div class="code-dots">
+              <div class="code-dot"></div>
+              <div class="code-dot"></div>
+              <div class="code-dot"></div>
+            </div>
+            <div class="code-line">const developer = {</div>
+            <div class="code-line">&nbsp;&nbsp;name: <span style="color:var(--accent)">"Nikitha B"</span>,</div>
+            <div class="code-line">&nbsp;&nbsp;role: <span style="color:var(--accent)">"Jr. Software Developer"</span>,</div>
+            <div class="code-line">&nbsp;&nbsp;passion: <span style="color:var(--accent)">"Native Mobile Apps"</span>,</div>
+            <div class="code-line">&nbsp;&nbsp;experience: <span style="color:var(--accent)">"1 year"</span>,</div>
+            <!-- <div class="code-line">&nbsp;&nbsp;status: <span style="color:var(--accent)">"Open to Opportunities"</span></div> -->
+            <div class="code-line">};</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════ TIMELINE ═══════════════════════ -->
+    <section id="journey" class="timeline-section">
+      <h2 class="section-title">My Professional Journey</h2>
+      <p class="section-subtitle">Every step shaped me — from classroom to production code</p>
+      <div class="timeline">
+
+        <!-- 1. College -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-year">2021 – 2025</div>
+            <span class="timeline-type-badge future">🎓 Education</span>
+            <h3>Academic Excellence</h3>
+            <h4>B.Tech IT · Kamaraj College of Engineering & Technology</h4>
+            <ul>
+              <li>CGPA: 9.6 — Gold Medals in 1st, 2nd & 3rd Year (2021–2024)</li>
+              <li>Built Restaurant Management System for table reservations using Angular, Node.js & MongoDB.</li>
+              <li>Created Brain Tumor Detection using hybrid SVM + Random Forest in MATLAB — detects tumours from MRI images via DWT technique.</li>
+              <li>Built a solid programming foundation in C, Java, Python, and C#, strengthening algorithmic thinking and problem-solving expertise.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 2. Part-time internship -->
+        <div class="timeline-item">
+          <div class="timeline-dot parttime"></div>
+          <div class="timeline-content highlight-tl">
+            <div class="timeline-year">3 Months · Part-Time Internship (Remote)</div>
+            <span class="timeline-type-badge">🌱 First Industry Experience</span>
+            <h3>Part-Time Intern</h3>
+            <h4>Job Searching Application (Frontend & Backend)</h4>
+            <p style="color:rgba(248,249,250,0.75); font-size:0.93rem; margin-bottom:0.8rem;">
+              My very first exposure to a real product team — worked part-time while still in college, contributing to a <strong style="color:#43e97b">Job Searching Application</strong> across two phases:
+            </p>
+            <div class="parttime-detail">
+              <h5>Phase 1 · Month 1 — Frontend (React JS)</h5>
+              <ul>
+                <li>Developed a complete customer-facing module for job discovery using React JS.</li>
+                <li>Built job listing pages, filters, search functionality, and job-detail views.</li>
+                <li>Learned to read existing codebase, follow team conventions, and meet delivery timelines.</li>
+              </ul>
+            </div>
+            <div class="parttime-detail">
+              <h5>Phase 2 · Month 2–3 — Backend (Django)</h5>
+              <ul>
+                <li>Switched to backend — built REST APIs for the same application using Django.</li>
+                <li>Implemented job listing endpoints, user authentication, and database queries.</li>
+                <li>Understood client-server architecture from both ends of the stack.</li>
+              </ul>
+            </div>
+            <div class="soft-skills">
+              <span class="soft-chip">🤝 Teamwork</span>
+              <span class="soft-chip">⏰ Time Management</span>
+              <span class="soft-chip">💬 Meeting Discussions</span>
+              <span class="soft-chip">📋 Sprint Planning</span>
+              <span class="soft-chip">🔄 Code Reviews</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Full-time internship -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-year">7 Months · Full-Time Internship</div>
+            <span class="timeline-type-badge fulltime">⚡ Full-Time Internship</span>
+            <h3>Skillmine Technology Consulting</h3>
+            <h4>Full Stack Development Intern · Pvt. Ltd.</h4>
+            <ul>
+              <li>Mastered modern stack: React, Next.js, Angular, Node.js, Nest.js, React Native.</li>
+              <li>Explored cross-platform mobile: React Native & Flutter.</li>
+              <li>Used advanced tools: Tailwind CSS, TypeScript, Kafka, Figma.</li>
+              <li>Built a simple Online Learning Platform (W3Schools-inspired).</li>
+              <li>Delivered a full-stack College Management System — React.js frontend, NestJS backend, MongoDB, with admin dashboard managing subjects, semesters, faculty, student records and role-based access.</li>
+              <li>Created a Todo Application in React Native.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 4. Current -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-year">Current Role</div>
+            <span class="timeline-type-badge current">🚀 Working</span>
+            <h3>E-compaas Care</h3>
+            <h4>Native Mobile Developer</h4>
+            <ul>
+              <li>Fully developed <strong>Phlebo App</strong> — a production-grade mobile healthcare solution.</li>
+              <li>Implemented foreground & background location tracking with extensive R&D.</li>
+              <li>Integrated real-time WebSocket communications for live updates.</li>
+              <li>Solved complex real-world challenges in healthcare mobile technology.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 5. Future -->
+        <div class="timeline-item">
+          <div class="timeline-dot" style="background:var(--purple);"></div>
+          <div class="timeline-content">
+            <div class="timeline-year">Looking Forward</div>
+            <span class="timeline-type-badge future">🌟 Goals</span>
+            <h3>Future Aspirations</h3>
+            <h4>Continuous Growth & Innovation</h4>
+            <ul>
+              <li>Building scalable, impactful applications that make a difference.</li>
+              <li>Exploring advanced mobile and backend technologies.</li>
+              <li>Contributing to open-source and meaningful projects.</li>
+              <li>Mentoring and sharing knowledge with the developer community.</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ═══════════════════════ SKILLS ═══════════════════════ -->
+    <section id="skills" class="skills-section">
+      <h2 class="section-title">Technical Expertise</h2>
+      <p class="section-subtitle">Skills built through real projects, not just tutorials</p>
+      <div class="skills-grid">
+        <div class="skill-card reveal">
+          <div class="skill-icon">💻</div>
+          <h3>Frontend Development</h3>
+          <p>Crafting beautiful, responsive UIs with modern frameworks and pixel-perfect attention to detail.</p>
+          <div class="tech-tags">
+            <span class="tech-tag">HTML5</span><span class="tech-tag">CSS3</span>
+            <span class="tech-tag">JavaScript</span><span class="tech-tag">TypeScript</span>
+            <span class="tech-tag">React.js</span><span class="tech-tag">Next.js</span>
+            <span class="tech-tag">Angular.js</span><span class="tech-tag">Bootstrap</span>
+            <span class="tech-tag">Tailwind CSS</span>
+          </div>
+        </div>
+        <div class="skill-card reveal">
+          <div class="skill-icon">⚙️</div>
+          <h3>Backend Development</h3>
+          <p>Building robust, scalable server-side applications, REST APIs, and real-time services.</p>
+          <div class="tech-tags">
+            <span class="tech-tag">Node.js</span><span class="tech-tag">Nest.js</span>
+            <span class="tech-tag">Django</span><span class="tech-tag">MongoDB</span>
+            <span class="tech-tag">MySQL</span><span class="tech-tag">Kafka</span>
+            <span class="tech-tag">WebSocket</span>
+          </div>
+        </div>
+        <div class="skill-card reveal">
+          <div class="skill-icon">📱</div>
+          <h3>Mobile Development</h3>
+          <p>Delivering cross-platform mobile apps with native performance, deep OS integration, and real-time features.</p>
+          <div class="tech-tags">
+            <span class="tech-tag">React Native</span><span class="tech-tag">Flutter</span>
+            <span class="tech-tag">Location Services</span><span class="tech-tag">Push Notifications</span>
+            <span class="tech-tag">WebSocket</span><span class="tech-tag">Background Tasks</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════ CERTIFICATIONS ═══════════════════════ -->
+    <section id="certifications" class="certifications-section">
+      <h2 class="section-title">Certifications & Learning</h2>
+      <p class="section-subtitle">Continuous learning is the foundation of great engineering</p>
+      <div class="certs-grid">
+        <div class="cert-card reveal">
+          <div class="cert-badge">🏆</div>
+          <h3>NPTEL – C Programming</h3>
+          <p class="cert-provider">NPTEL (National Programme on Technology Enhanced Learning)</p>
+          <p>Earned Silver Badge with 75% score. Covered advanced C programming, data structures, pointers, and algorithms.</p>
+          <div class="cert-skills"><span class="skill-pill">C Programming</span><span class="skill-pill">Data Structures</span><span class="skill-pill">Algorithms</span></div>
+        </div>
+        <div class="cert-card reveal">
+          <div class="cert-badge">💻</div>
+          <h3>SKILLRACK Certifications</h3>
+          <p class="cert-provider">SkillRack Platform</p>
+          <p>Completed programming tracks in C, Python, SQL, and Java. Solved 500+ coding challenges across difficulty levels.</p>
+          <div class="cert-skills"><span class="skill-pill">C</span><span class="skill-pill">Python</span><span class="skill-pill">SQL</span><span class="skill-pill">Java</span></div>
+        </div>
+        <div class="cert-card reveal">
+          <div class="cert-badge">🗄️</div>
+          <h3>Database Fundamentals</h3>
+          <p class="cert-provider">Infosys Springboard</p>
+          <p>Comprehensive understanding of database concepts, normalization, SQL queries, and real-world design patterns.</p>
+          <div class="cert-skills"><span class="skill-pill">Database Design</span><span class="skill-pill">SQL</span><span class="skill-pill">Normalization</span></div>
+        </div>
+        <div class="cert-card reveal">
+          <div class="cert-badge">🎨</div>
+          <h3>HTML & CSS — Build a Blog</h3>
+          <p class="cert-provider">Infosys Springboard</p>
+          <p>Built a personal blog from scratch. Covered HTML5, CSS3, responsive design, flexbox, grid, and web accessibility.</p>
+          <div class="cert-skills"><span class="skill-pill">HTML5</span><span class="skill-pill">CSS3</span><span class="skill-pill">Responsive Design</span></div>
+        </div>
+        <div class="cert-card reveal">
+          <div class="cert-badge">📊</div>
+          <h3>Algorithms & Data Collection</h3>
+          <p class="cert-provider">Coursera</p>
+          <p>Algorithm design, complexity analysis, and efficient data collection strategies for large-scale applications.</p>
+          <div class="cert-skills"><span class="skill-pill">Algorithms</span><span class="skill-pill">Big O</span><span class="skill-pill">Optimization</span></div>
+        </div>
+        <div class="cert-card reveal">
+          <div class="cert-badge">⚡</div>
+          <h3>Starting to Code</h3>
+          <p class="cert-provider">Coursera</p>
+          <p>The foundation course that kickstarted my programming journey — fundamentals, problem-solving, and computational thinking.</p>
+          <div class="cert-skills"><span class="skill-pill">Programming Basics</span><span class="skill-pill">Logic Building</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════ ACHIEVEMENTS ═══════════════════════ -->
+    <section class="achievements-section">
+      <h2 class="section-title">Awards & Achievements</h2>
+      <div class="achievements-container">
+        <div class="big-achievement reveal">
+          <div class="achievement-icon">🥇</div>
+          <h3>3-Time Gold Medalist</h3>
+          <p class="achievement-year">Kamaraj College · 2021 – 2024</p>
+          <p>Top performer in Information Technology for three consecutive years. Maintained a 9.6 CGPA throughout the program while delivering real-world projects.</p>
+          <div class="achievement-stats">
+            <div class="stat"><div class="stat-number">9.6</div><div class="stat-label">CGPA</div></div>
+            <div class="stat"><div class="stat-number">3</div><div class="stat-label">Gold Medals</div></div>
+            <div class="stat"><div class="stat-number">Top 1%</div><div class="stat-label">Dept. Rank</div></div>
+          </div>
+        </div>
+        <div class="achievement-mini-grid">
+          <div class="mini-achievement reveal">
+            <div class="mini-icon">🎓</div>
+            <h4>School Excellence</h4>
+            <p>88% in HSC & 86% in SSLC from PKN Girls' Higher Secondary School, Thirumangalam, Madurai.</p>
+          </div>
+          <div class="mini-achievement reveal">
+            <div class="mini-icon">🌱</div>
+            <h4>First Industry Step</h4>
+            <p>Completed a 3-month part-time internship during college — contributed to a real job-search product (React JS + Django).</p>
+          </div>
+          <div class="mini-achievement reveal">
+            <div class="mini-icon">💼</div>
+            <h4>Internship Success</h4>
+            <p>7-month full-time training at Skillmine Technology with 3 major project deliveries across web and mobile.</p>
+          </div>
+          <div class="mini-achievement reveal">
+            <div class="mini-icon">🚀</div>
+            <h4>Production Deployment</h4>
+            <p>Successfully deployed Phlebo App to production — serving real healthcare professionals daily.</p>
+          </div>
+          <div class="mini-achievement reveal">
+            <div class="mini-icon">📚</div>
+            <h4>6+ Certifications</h4>
+            <p>Earned professional certifications from NPTEL, Infosys Springboard, Coursera, and SkillRack.</p>
+          </div>
+          <div class="mini-achievement reveal">
+            <div class="mini-icon">🤝</div>
+            <h4>Team Collaborator</h4>
+            <p>Experienced in sprint planning, cross-functional meetings, code reviews, and on-time delivery in team environments.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════ TECH ARSENAL ═══════════════════════ -->
+    <section class="tech-deep-dive-section">
+      <h2 class="section-title">Complete Technology Arsenal</h2>
+      <p class="section-subtitle">A deep look at every tool and technology in my stack</p>
+      <div class="tech-categories">
+        <div class="tech-category reveal">
+          <h3>🎨 Frontend Technologies</h3>
+          <div class="tech-items">
+            <div class="tech-item"><strong>HTML5</strong><span>Semantic markup, accessibility, SEO</span></div>
+            <div class="tech-item"><strong>CSS3</strong><span>Animations, Grid, Flexbox, responsive</span></div>
+            <div class="tech-item"><strong>JavaScript (ES6+)</strong><span>Async/await, promises, modern APIs</span></div>
+            <div class="tech-item"><strong>TypeScript</strong><span>Type safety, interfaces, generics</span></div>
+            <div class="tech-item"><strong>React.js</strong><span>Hooks, Context API, performance optimization</span></div>
+            <div class="tech-item"><strong>Next.js</strong><span>SSR, SSG, API routes, image optimization</span></div>
+            <div class="tech-item"><strong>Angular.js</strong><span>Components, services, RxJS, routing</span></div>
+            <div class="tech-item"><strong>Bootstrap</strong><span>Rapid prototyping, responsive grids</span></div>
+            <div class="tech-item"><strong>Tailwind CSS</strong><span>Utility-first, custom design systems</span></div>
+          </div>
+        </div>
+        <div class="tech-category reveal">
+          <h3>⚙️ Backend Technologies</h3>
+          <div class="tech-items">
+            <div class="tech-item"><strong>Django</strong><span>ORM, admin panel, REST framework, authentication</span></div>
+            <div class="tech-item"><strong>Node.js</strong><span>Express.js, middleware, RESTful APIs</span></div>
+            <div class="tech-item"><strong>Nest.js</strong><span>Dependency injection, modules, decorators</span></div>
+            <div class="tech-item"><strong>MongoDB</strong><span>NoSQL, aggregation pipelines, indexing</span></div>
+            <div class="tech-item"><strong>MySQL</strong><span>Relational DB, complex queries, optimization</span></div>
+            <div class="tech-item"><strong>Kafka</strong><span>Message streaming, event-driven architecture</span></div>
+            <div class="tech-item"><strong>WebSocket</strong><span>Real-time bidirectional communication</span></div>
+          </div>
+        </div>
+        <div class="tech-category reveal">
+          <h3>📱 Mobile Development</h3>
+          <div class="tech-items">
+            <div class="tech-item"><strong>React Native</strong><span>Cross-platform apps, native modules, navigation</span></div>
+            <div class="tech-item"><strong>Flutter</strong><span>Dart, widgets, state management (BLoC/Provider)</span></div>
+            <div class="tech-item"><strong>Location Services</strong><span>Foreground & background GPS tracking</span></div>
+            <div class="tech-item"><strong>Push Notifications</strong><span>FCM, local & remote notifications</span></div>
+            <div class="tech-item"><strong>Background Tasks</strong><span>Long-running services, task scheduling</span></div>
+            <div class="tech-item"><strong>WebSocket (Mobile)</strong><span>Real-time data sync in mobile apps</span></div>
+          </div>
+        </div>
+        <div class="tech-category reveal">
+          <h3>🛠️ Tools & Design</h3>
+          <div class="tech-items">
+            <div class="tech-item"><strong>Figma</strong><span>UI/UX wireframing, prototyping, design handoff</span></div>
+            <div class="tech-item"><strong>Git & GitHub</strong><span>Version control, branching, PRs, collaboration</span></div>
+            <div class="tech-item"><strong>MATLAB</strong><span>Image processing, SVM, DWT algorithms</span></div>
+            <div class="tech-item"><strong>C / Java / Python</strong><span>Core CS foundations and algorithms</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════ EXPERIENCE HIGHLIGHTS ═══════════════════════ -->
+    <section class="experience-highlights-section">
+      <h2 class="section-title">Key Experience Highlights</h2>
+      <div class="highlights-grid">
+        <div class="highlight-card reveal">
+          <div class="highlight-number">01</div>
+          <h3>First Steps into Industry</h3>
+          <p>Before my full-time internship, a 3-month part-time role gave me my first real taste of professional software development — working on a live job-search product with a real team.</p>
+          <ul class="highlight-points">
+            <li>Built frontend job-search module in React JS (Month 1)</li>
+            <li>Developed Django REST APIs for the same product (Month 2–3)</li>
+            <li>Learned team dynamics: sprint planning, daily standups, code reviews</li>
+            <li>Understood full-stack architecture from both ends</li>
+            <li>Developed professional time management and communication skills</li>
+          </ul>
+        </div>
+        <div class="highlight-card reveal">
+          <div class="highlight-number">02</div>
+          <h3>Healthcare Innovation</h3>
+          <p>At E-compaas Care, I'm tackling real-world mobile challenges in healthcare — a domain where reliability and accuracy are critical for real patients and professionals.</p>
+          <ul class="highlight-points">
+            <li>Fully built Phlebo App end-to-end in React Native</li>
+            <li>Implemented foreground & background location tracking</li>
+            <li>Integrated WebSocket for real-time live updates</li>
+            <li>Deployed to production — serving actual healthcare workers</li>
+          </ul>
+        </div>
+        <div class="highlight-card reveal">
+          <div class="highlight-number">03</div>
+          <h3>Full Stack Mastery at Skillmine</h3>
+          <p>Seven months of intensive full-stack training at Skillmine Technology Consulting transformed me from a student into a production-ready developer.</p>
+          <ul class="highlight-points">
+            <li>Mastered 15+ technologies in 7 months</li>
+            <li>Delivered 3 major projects: Learning Platform, College Management System, Todo App</li>
+            <li>Learned both web and mobile development pipelines</li>
+            <li>Worked with enterprise-level tools like Kafka and Figma</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════ BLOG INSIGHTS ═══════════════════════ -->
+    <section id="insights" class="blog-section">
+      <h2 class="section-title">Development Insights</h2>
+      <p class="section-subtitle">Lessons learned and ideas worth sharing from my journey</p>
+      <div class="blog-grid">
+        <article class="blog-card reveal">
+          <div class="blog-tag">Mobile Development</div>
+          <h3>Mastering Location Services in React Native</h3>
+          <p class="blog-excerpt">Working on the Phlebo App taught me the intricacies of location tracking — both foreground and background. Battery optimization, permission handling, and accuracy when the app is minimized are all challenges I solved through extensive R&D.</p>
+          <div class="blog-meta"><span>5 min read</span><span>•</span><span>Technical Deep Dive</span></div>
+        </article>
+        <article class="blog-card reveal">
+          <div class="blog-tag">Backend</div>
+          <h3>Building Scalable APIs with Nest.js</h3>
+          <p class="blog-excerpt">Nest.js is now my go-to for backend development. Its modular architecture, dependency injection, and TypeScript support are perfect for building enterprise-grade REST APIs. Here are the patterns I rely on most.</p>
+          <div class="blog-meta"><span>7 min read</span><span>•</span><span>Architecture</span></div>
+        </article>
+        <article class="blog-card reveal">
+          <div class="blog-tag">Career</div>
+          <h3>Part-Time Intern to Production Developer</h3>
+          <p class="blog-excerpt">My journey started with a 3-month part-time internship where I first learned what "working in a team" really means — sprint meetings, code reviews, and delivering on time. Here's how that experience set the foundation for everything that followed.</p>
+          <div class="blog-meta"><span>8 min read</span><span>•</span><span>Personal Story</span></div>
+        </article>
+        <article class="blog-card reveal">
+          <div class="blog-tag">Web Development</div>
+          <h3>React vs Angular: A Practitioner's View</h3>
+          <p class="blog-excerpt">Having shipped real projects with both React and Angular, I've formed clear opinions on when to use each. This is my practical, bias-free comparison based on actual work — not just tutorials.</p>
+          <div class="blog-meta"><span>6 min read</span><span>•</span><span>Comparison</span></div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════ STATS ═══════════════════════ -->
+    <section class="stats-section">
+      <h2 class="section-title">By The Numbers</h2>
+      <div class="stats-grid">
+        <div class="stat-box reveal"><div class="stat-value" data-target="15">0</div><div class="stat-description">Technologies Mastered</div></div>
+        <div class="stat-box reveal"><div class="stat-value" data-target="10">0</div><div class="stat-description">Months of Industry Exp.</div></div>
+        <div class="stat-box reveal"><div class="stat-value" data-target="7">0</div><div class="stat-description">Major Projects Built</div></div>
+        <div class="stat-box reveal"><div class="stat-value">9.6</div><div class="stat-description">Academic CGPA</div></div>
+        <div class="stat-box reveal"><div class="stat-value" data-target="6">0</div><div class="stat-description">Certifications Earned</div></div>
+        <div class="stat-box reveal"><div class="stat-value" data-target="3">0</div><div class="stat-description">Gold Medals 🥇</div></div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════ PROJECTS ═══════════════════════ -->
+    <section id="projects" class="projects-section">
+      <h2 class="section-title">Featured Projects</h2>
+      <p class="section-subtitle">Real projects, real users, real impact</p>
+
+      <div class="project-card">
+        <div class="project-header">
+          <h3>Phlebo App — Healthcare Mobile Solution</h3>
+          <span class="project-type">🟢 Current · E-compaas Care</span>
+        </div>
+        <p>Fully developed production-grade mobile healthcare application. Implemented advanced foreground & background location tracking, real-time WebSocket for live updates, and conducted extensive R&D to ensure reliability for healthcare professionals in the field.</p>
+        <div class="tech-tags">
+          <span class="tech-tag">React Native</span><span class="tech-tag">Location Services</span>
+          <span class="tech-tag">WebSocket</span><span class="tech-tag">Background Tasks</span><span class="tech-tag">Healthcare</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <h3>Job Searching Application</h3>
+          <span class="project-type">🌱 Part-Time Internship</span>
+        </div>
+        <p>Contributed to a live job search platform across two phases — built the customer-facing frontend module in React JS, then developed the Django REST API backend. Gained hands-on experience with real team workflows and delivery timelines.</p>
+        <div class="tech-tags">
+          <span class="tech-tag">React JS</span><span class="tech-tag">Django</span>
+          <span class="tech-tag">REST API</span><span class="tech-tag">Team Project</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <h3>College Management System</h3>
+          <span class="project-type">Skillmine Internship</span>
+        </div>
+        <p>Full-stack educational platform with a comprehensive admin dashboard managing subjects, semesters, faculty records, student data, and onboarding documentation. Features structured role-based access control throughout.</p>
+        <div class="tech-tags">
+          <span class="tech-tag">React</span><span class="tech-tag">Nest.js</span>
+          <span class="tech-tag">MongoDB</span><span class="tech-tag">TypeScript</span><span class="tech-tag">RBAC</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <h3>Online Learning Platform</h3>
+          <span class="project-type">Skillmine Internship</span>
+        </div>
+        <p>Interactive learning platform inspired by W3Schools. Features course modules, progress tracking, and an intuitive learning interface for web technologies. Designed and built end-to-end during the internship.</p>
+        <div class="tech-tags">
+          <span class="tech-tag">React</span><span class="tech-tag">Node.js</span>
+          <span class="tech-tag">MongoDB</span><span class="tech-tag">Education Tech</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <h3>Restaurant Management System</h3>
+          <span class="project-type">🎓 College Project</span>
+        </div>
+        <p>Convenient and secure platform for managing table reservations and staff scheduling through an intuitive digital interface. Built as a mini project during B.Tech with full Angular + Node.js + MongoDB stack.</p>
+        <div class="tech-tags">
+          <span class="tech-tag">Angular.js</span><span class="tech-tag">Node.js</span>
+          <span class="tech-tag">MongoDB</span><span class="tech-tag">Real-time</span>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ═══════════════════════ CONTACT ═══════════════════════ -->
+    <section id="contact" class="contact-section">
+      <h2 class="section-title">Let's Connect</h2>
+      <p style="max-width:680px; margin:0 auto 0.8rem; color:rgba(248,249,250,0.8); font-size:1.1rem;">
+        Open to new opportunities, collaborations, or a simple tech conversation.
+      </p>
+      <p style="max-width:680px; margin:0 auto 2.5rem; color:rgba(248,249,250,0.55); font-size:0.95rem;">
+        Whether you want to work together, discuss a technical challenge, or just say hi — I'd love to hear from you!
+      </p>
+      <div class="contact-links">
+        <a href="mailto:nikithab2003@gmail.com" class="contact-link">📧 Email Me</a>
+        <a href="https://github.com/Nikitha2308" target="_blank" class="contact-link">💻 GitHub</a>
+        <a href="https://www.linkedin.com/in/nikitha-nikitha" target="_blank" class="contact-link">🔗 LinkedIn</a>
+        <a href="tel:9123585022" class="contact-link">📱 Call Me</a>
+      </div>
+
+      <div class="social-links">
+        <h3>Find Me Online</h3>
+        <div class="social-icons">
+          <a href="https://github.com/Nikitha2308" target="_blank" class="social-icon" title="GitHub">
+            <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none">
+              <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+            </svg>
+          </a>
+          <a href="https://www.linkedin.com/in/nikitha-nikitha" target="_blank" class="social-icon" title="LinkedIn">
+            <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+              <rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/>
+            </svg>
+          </a>
+          <a href="mailto:nikithab2003@gmail.com" class="social-icon" title="Email">
+            <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+              <polyline points="22,6 12,13 2,6"/>
+            </svg>
+          </a>
+          <a href="tel:9123585022" class="social-icon" title="Phone">
+            <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <p>© 2026 Nikitha B · Built with passion and dedication.</p>
+      <!-- <p style="margin-top:0.5rem; font-size:0.88rem;">
+        Inspired by <a href="https://vimalprakash.com/" target="_blank">vimalprakash.com</a>
+      </p> -->
+    </footer>
+
+    <script>
+      // Scroll reveal
+      function reveal() {
+        document.querySelectorAll(".reveal").forEach(el => {
+          const top = el.getBoundingClientRect().top;
+          if (top < window.innerHeight - 120) el.classList.add("active");
+          else el.classList.remove("active");
+        });
+      }
+      window.addEventListener("scroll", reveal);
+      reveal();
+
+      // Smooth scroll
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function(e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+        });
+      });
+
+      // Animated counters
+      function animateCounters() {
+        document.querySelectorAll(".stat-value[data-target]").forEach(counter => {
+          const target = parseInt(counter.getAttribute("data-target"));
+          const increment = target / (2000 / 16);
+          let current = 0;
+          const update = () => {
+            current += increment;
+            if (current < target) { counter.textContent = Math.floor(current); requestAnimationFrame(update); }
+            else counter.textContent = target;
+          };
+          new IntersectionObserver(entries => {
+            entries.forEach(e => { if (e.isIntersecting) { update(); } });
+          }).observe(counter);
+        });
+      }
+      animateCounters();
+    </script>
+  </body>
+</html>
