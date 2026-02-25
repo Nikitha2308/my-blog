@@ -94,7 +94,7 @@
         --border-subtle:   rgba(255,255,255,0.07);
         --text-primary:    #f8f9fa;
         --text-muted:      rgba(248,249,250,0.65);
-        --text-faint:      rgba(248,249,250,0.65);
+        --text-faint:      rgba(248,249,250,0.35);
         --header-bg:       rgba(13,13,26,0.88);
         --footer-bg:       rgba(0,0,0,0.2);
         --aurora-opacity:  0.12;
@@ -126,7 +126,7 @@
         --border-subtle:   rgba(0,0,0,0.08);
         --text-primary:    #1a1a2e;
         --text-muted:      rgba(26,26,46,0.7);
-        --text-faint:      rgba(26,26,46,0.70);
+        --text-faint:      rgba(26,26,46,0.4);
         --header-bg:       rgba(245,244,240,0.92);
         --footer-bg:       rgba(235,233,227,0.8);
         --aurora-opacity:  0.18;
@@ -269,7 +269,7 @@
 
       /* ── SECTIONS COMMON ── */
       .section-header{text-align:center;margin-bottom:4rem;}
-      .section-kicker{display:inline-flex;align-items:center;gap:.5rem;font-family:"Space Mono","Courier New",monospace;font-size:.75rem;text-transform:uppercase;letter-spacing:.15em;color:var(--secondary);margin-bottom:1rem;}
+      .section-kicker{display:inline-flex;align-items:center;gap:.5rem;font-family:"Space Mono","Courier New",monospace;font-size:.75rem;text-transform:uppercase;letter-spacing:.15em;color:var(--secondary);margin-bottom:1rem;opacity:.8;}
       .section-kicker::before,.section-kicker::after{content:"";flex:1;height:1px;background:linear-gradient(to right,transparent,var(--secondary),transparent);width:30px;}
       .section-title{font-family:"Cormorant Garamond",Georgia,serif;font-size:3.5rem;margin-bottom:1rem;background:var(--gradient-2);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
       .section-subtitle{max-width:600px;margin:0 auto;color:var(--text-faint);font-size:1rem;line-height:1.7;}
@@ -522,22 +522,18 @@
       }
 
       /* ── LIGHT MODE OVERRIDES ── */
-      /* old light overrides removed — see consolidated block below */
-      [data-theme="light"]{--secondary:#0c6b78;--glow-teal:0 0 30px rgba(12,107,120,0.35);--scrollbar-thumb:rgba(12,107,120,0.5);}
-      [data-theme="light"] .code-block{border-color:rgba(12,107,120,0.25);}
+      [data-theme="light"] .code-block{border-color:rgba(78,205,196,0.25);}
       [data-theme="light"] .timeline-content h3{color:#2563eb;}
       [data-theme="light"] .timeline-content h4{color:#dc2626;}
-      [data-theme="light"] .section-kicker{opacity:1;}
-      [data-theme="light"] .skill-card h3,[data-theme="light"] .cert-card h3{color:#0c6b78;}
-      [data-theme="light"] .highlight-card h3{color:#0c6b78;}
-      [data-theme="light"] .mini-achievement h4{color:#0c6b78;}
-      [data-theme="light"] .hero-tag{background:rgba(12,107,120,0.08);border-color:rgba(12,107,120,0.2);}
-      [data-theme="light"] .tech-tag{background:rgba(12,107,120,0.07);border-color:rgba(12,107,120,0.2);}
-      [data-theme="light"] .hero-badge{border-color:rgba(12,107,120,0.2);}
-      [data-theme="light"] .contact-link{border-color:rgba(12,107,120,0.3);}
-      [data-theme="light"] header{border-bottom-color:rgba(12,107,120,0.15);}
-      [data-theme="light"] .timeline::before{background:linear-gradient(to bottom,transparent,#0c6b78 10%,#7c3aed 90%,transparent);}
-      [data-theme="light"] .skill-card:hover,[data-theme="light"] .cert-card:hover{box-shadow:0 25px 50px rgba(0,0,0,0.12),0 0 20px rgba(12,107,120,0.12);}
+      [data-theme="light"] .section-kicker{color:#0891b2;}
+      [data-theme="light"] .skill-card h3,[data-theme="light"] .cert-card h3{color:#0e7490;}
+      [data-theme="light"] .highlight-card h3{color:#0e7490;}
+      [data-theme="light"] .mini-achievement h4{color:#0e7490;}
+      [data-theme="light"] .tech-tag{color:#0e7490;}
+      [data-theme="light"] .hero-badge{color:#0e7490;}
+      [data-theme="light"] header{border-bottom-color:rgba(78,205,196,0.15);}
+      [data-theme="light"] .timeline::before{background:linear-gradient(to bottom,transparent,#0891b2 10%,#7c3aed 90%,transparent);}
+      [data-theme="light"] .skill-card:hover,[data-theme="light"] .cert-card:hover{box-shadow:0 25px 50px rgba(0,0,0,0.12),0 0 20px rgba(78,205,196,0.12);}
 
       /* ── PERF: will-change scoped tightly ── */
       .hero-visual{will-change:transform;}
@@ -994,7 +990,7 @@
       <p class="contact-desc">Open to new opportunities, collaborations, or a simple tech conversation.</p>
       <p class="contact-sub">Whether you want to work together, discuss a technical challenge, or just say hi — I'd love to hear from you!</p>
       <div class="contact-links">
-        <a href="/cdn-cgi/l/email-protection#58363133312c30393a6a68686b183f35393134763b3735" class="contact-link"><span>📧 Email Me</span></a>
+        <a href="mailto:nikithab2003@gmail.com" class="contact-link"><span>📧 Email Me</span></a>
         <a href="https://github.com/Nikitha2308" target="_blank" rel="noopener" class="contact-link github-link"><span>💻 GitHub</span></a>
         <a href="https://www.linkedin.com/in/nikitha-nikitha" target="_blank" rel="noopener" class="contact-link linkedin"><span>🔗 LinkedIn</span></a>
         <a href="tel:9123585022" class="contact-link"><span>📱 Call Me</span></a>
@@ -1008,7 +1004,7 @@
           <a href="https://www.linkedin.com/in/nikitha-nikitha" target="_blank" rel="noopener" class="social-icon linkedin-icon" title="LinkedIn">
             <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
           </a>
-          <a href="/cdn-cgi/l/email-protection#cea0a7a5a7baa6afacfcfefefd8ea9a3afa7a2e0ada1a3" class="social-icon" title="Email">
+          <a href="mailto:nikithab2003@gmail.com" class="social-icon" title="Email">
             <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
           </a>
           <a href="tel:9123585022" class="social-icon" title="Phone">
@@ -1022,7 +1018,7 @@
       <p>© 2026 <strong>Nikitha B</strong> · Built with passion, dedication.</p>
     </footer>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    <script>
       /* ═══════════════════════════════════════
          THEME TOGGLE
       ═══════════════════════════════════════ */
