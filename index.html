@@ -7,8 +7,8 @@
     <!-- ═══════════════════════════════════════════
          PRIMARY META TAGS
     ═══════════════════════════════════════════ -->
-    <title>Nikitha B — Jr. Software Developer</title>
-    <meta name="title" content="Nikitha B — Jr. Software Developer | Mobile App Specialist" />
+    <title>Nikitha B — Jr. Software Developer | React Native & Full Stack</title>
+    <meta name="title" content="Nikitha B — Jr. Software Developer | React Native & Full Stack" />
     <meta name="description" content="Jr. Software Developer specializing in React Native, React JS, Nest.js & MongoDB. Gold Medalist with 1+ year industry experience building production-grade mobile and web applications." />
     <meta name="keywords" content="Nikitha B, Junior Software Developer, React Native Developer, Mobile App Developer, Full Stack Developer, React JS, Nest.js, MongoDB, Angular, TypeScript, Healthcare App" />
     <meta name="author" content="Nikitha B" />
@@ -22,10 +22,10 @@
          OPEN GRAPH / FACEBOOK
     ═══════════════════════════════════════════ -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://nikitha.online/" />
-    <meta property="og:title" content="Nikitha B — Jr. Software Developer | Mobile App Specialist" />
+    <meta property="og:url" content="https://nikithab.dev/" />
+    <meta property="og:title" content="Nikitha B — Jr. Software Developer | React Native & Full Stack" />
     <meta property="og:description" content="Jr. Software Developer specializing in React Native, React JS, Nest.js & MongoDB. Gold Medalist, production app deployed in healthcare." />
-    <meta property="og:image" content="https://nikitha.online/og-image.png" />
+    <meta property="og:image" content="https://nikithab.dev/og-image.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:site_name" content="Nikitha B — Portfolio" />
@@ -35,16 +35,16 @@
          TWITTER CARD
     ═══════════════════════════════════════════ -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:url" content="https://nikitha.online/" />
-    <meta name="twitter:title" content="Nikitha B — Jr. Software Developer | Mobile App Specialist" />
+    <meta name="twitter:url" content="https://nikithab.dev/" />
+    <meta name="twitter:title" content="Nikitha B — Jr. Software Developer" />
     <meta name="twitter:description" content="React Native & Full Stack Developer. Gold Medalist. Healthcare app in production." />
-    <meta name="twitter:image" content="https://nikitha.online/og-image.png" />
+    <meta name="twitter:image" content="https://nikithab.dev/og-image.png" />
     <meta name="twitter:creator" content="@nikithab_dev" />
 
     <!-- ═══════════════════════════════════════════
          CANONICAL & GEO
     ═══════════════════════════════════════════ -->
-    <link rel="canonical" href="https://nikitha.online/" />
+    <link rel="canonical" href="https://nikithab.dev/" />
     <meta name="geo.region" content="IN-TN" />
     <meta name="geo.placename" content="Tamil Nadu, India" />
 
@@ -65,7 +65,7 @@
       "jobTitle": "Junior Software Developer",
       "description": "Jr. Software Developer specializing in React Native, React JS, Nest.js and MongoDB. Gold Medalist with 9.6 CGPA.",
       "email": "nikithab2003@gmail.com",
-      "url": "https://nikitha.online/",
+      "url": "https://nikithab.dev/",
       "sameAs": [
         "https://github.com/Nikitha2308",
         "https://www.linkedin.com/in/nikitha-nikitha"
@@ -89,19 +89,15 @@
     <meta name="msapplication-TileColor" content="#0d0d1a" />
 
     <!-- ═══════════════════════════════════════════
-         PERFORMANCE: preconnect, font-display swap
+         PERFORMANCE: Non-render-blocking fonts
     ═══════════════════════════════════════════ -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Cormorant+Garamond:wght@300;400;600;700&family=DM+Sans:wght@400;500;700&display=swap&font-display=swap"
-      rel="stylesheet"
-      media="print"
-      onload="this.media='all'"
-    />
-    <noscript>
-      <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Cormorant+Garamond:wght@300;400;600;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
-    </noscript>
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+    <!-- Load fonts async — zero render blocking -->
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Cormorant+Garamond:wght@300;400;600;700&family=DM+Sans:wght@400;500;700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Cormorant+Garamond:wght@300;400;600;700&family=DM+Sans:wght@400;500;700&display=swap" media="print" onload="this.media='all'" />
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Cormorant+Garamond:wght@300;400;600;700&family=DM+Sans:wght@400;500;700&display=swap" /></noscript>
 
     <style>
       /* ═══════════════════════════════════════
@@ -162,6 +158,17 @@
         --scrollbar-thumb: rgba(78,205,196,0.5);
 
         color-scheme: light;
+      }
+
+      /* Critical font fallbacks shown instantly before webfonts load */
+      body { font-family: "DM Sans", system-ui, -apple-system, sans-serif; }
+
+      /* content-visibility: auto skips rendering off-screen sections */
+      .timeline-section, .skills-section, .certifications-section,
+      .achievements-section, .experience-highlights-section,
+      .stats-section, .projects-section, .contact-section {
+        content-visibility: auto;
+        contain-intrinsic-size: 0 600px;
       }
 
       /* Scrollbar */
@@ -253,16 +260,23 @@
         filter:blur(80px);
         animation: auroraMove 12s ease-in-out infinite alternate;
         opacity: var(--aurora-opacity);
+        will-change: transform;
+      }
+      /* Reduce expensive blur on mobile for speed */
+      @media(max-width:768px){
+        .aurora-blob { filter:blur(50px); }
+        .aurora-blob:nth-child(3),
+        .aurora-blob:nth-child(4) { display:none; }
       }
       .aurora-blob:nth-child(1){ width:600px;height:600px;background:var(--gradient-1);top:-200px;left:-100px; }
       .aurora-blob:nth-child(2){ width:500px;height:500px;background:var(--gradient-2);top:30%;right:-150px;animation-delay:-4s; }
       .aurora-blob:nth-child(3){ width:400px;height:400px;background:var(--gradient-3);bottom:-100px;left:30%;animation-delay:-8s; }
       .aurora-blob:nth-child(4){ width:350px;height:350px;background:var(--gradient-4);top:60%;left:-50px;animation-delay:-2s; }
       @keyframes auroraMove {
-        0%  { transform:translate(0,0) scale(1) rotate(0deg); }
-        33% { transform:translate(60px,-40px) scale(1.1) rotate(5deg); }
-        66% { transform:translate(-30px,60px) scale(0.95) rotate(-5deg); }
-        100%{ transform:translate(40px,20px) scale(1.05) rotate(3deg); }
+        0%  { transform:translate3d(0,0,0) scale(1) rotate(0deg); }
+        33% { transform:translate3d(60px,-40px,0) scale(1.1) rotate(5deg); }
+        66% { transform:translate3d(-30px,60px,0) scale(0.95) rotate(-5deg); }
+        100%{ transform:translate3d(40px,20px,0) scale(1.05) rotate(3deg); }
       }
 
       /* ═══════════════════════════════════════
@@ -273,7 +287,7 @@
       [data-theme="light"] .star { background: #667eea; }
       @keyframes twinkle { 0%,100%{opacity:0;transform:scale(0.5)} 50%{opacity:var(--max-opacity,0.7);transform:scale(1)} }
 
-      .particles-canvas { position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;pointer-events:none; }
+      .particles-canvas { position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;pointer-events:none;will-change:transform; }
 
       /* ═══════════════════════════════════════
          SCROLL PROGRESS
@@ -352,27 +366,27 @@
       @keyframes ticker { from{transform:translateX(0)} to{transform:translateX(-50%)} }
 
       .hero-content { max-width:1200px;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center; }
-      .hero-tag { display:inline-flex;align-items:center;gap:.5rem;background:rgba(78,205,196,0.08);border:1px solid rgba(78,205,196,0.2);padding:.4rem 1rem;border-radius:20px;font-size:.8rem;color:var(--secondary);margin-bottom:1.5rem;animation:heroFadeIn .8s ease .1s both;letter-spacing:.05em; }
+      .hero-tag { display:inline-flex;align-items:center;gap:.5rem;background:rgba(78,205,196,0.08);border:1px solid rgba(78,205,196,0.2);padding:.4rem 1rem;border-radius:20px;font-size:.8rem;color:var(--secondary);margin-bottom:1.5rem;animation:fadeInUp .5s ease 0s both;letter-spacing:.05em; }
       .hero-tag .blink { width:6px;height:6px;background:#43e97b;border-radius:50%;animation:blink 1.2s ease-in-out infinite; }
       @keyframes blink { 0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(67,233,123,0)} 50%{opacity:.5;box-shadow:0 0 0 5px rgba(67,233,123,0)} }
 
-      .hero-text h1 { font-family:"Cormorant Garamond",serif;font-size:4.8rem;font-weight:700;line-height:1.05;margin-bottom:1.5rem;animation:heroFadeIn 1s ease .2s both; }
+      .hero-text h1 { font-family:"Cormorant Garamond",serif;font-size:4.8rem;font-weight:700;line-height:1.05;margin-bottom:1.5rem;animation:fadeInUp .5s ease .05s both; }
       .line1 { display:block;color:var(--text-primary);opacity:.9; }
       .line2 { display:block;background:var(--gradient-2);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;position:relative; }
       .line2::after { content:"";position:absolute;bottom:-4px;left:0;width:100%;height:3px;background:var(--gradient-2);border-radius:2px;opacity:.4; }
 
-      .hero-subtitle { font-size:1.1rem;color:var(--text-muted);margin-bottom:2rem;animation:heroFadeIn 1s ease .35s both;display:flex;align-items:center;gap:.8rem;flex-wrap:wrap; }
+      .hero-subtitle { font-size:1.1rem;color:var(--text-muted);margin-bottom:2rem;animation:fadeInUp .5s ease .1s both;display:flex;align-items:center;gap:.8rem;flex-wrap:wrap; }
       .hero-subtitle .sep { color:var(--secondary);opacity:.4; }
 
-      .hero-badges { display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:2rem;animation:heroFadeIn 1s ease .5s both; }
+      .hero-badges { display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:2rem;animation:fadeInUp .5s ease .15s both; }
       .hero-badge { background:var(--bg-card);border:1px solid rgba(78,205,196,0.2);color:var(--secondary);padding:.4rem .9rem;border-radius:20px;font-size:.82rem;transition:all .3s ease;cursor:default;position:relative;overflow:hidden; }
       .hero-badge::before { content:"";position:absolute;inset:0;background:var(--gradient-3);opacity:0;transition:opacity .3s; }
       .hero-badge:hover { transform:translateY(-3px) scale(1.05);color:white;border-color:transparent;box-shadow:0 8px 20px rgba(79,172,254,0.3); }
       .hero-badge:hover::before { opacity:1; }
       .hero-badge span { position:relative;z-index:1; }
 
-      .hero-desc { font-size:.97rem;color:var(--text-muted);margin-bottom:2.5rem;animation:heroFadeIn 1s ease .6s both;border-left:3px solid var(--secondary);padding-left:1rem;line-height:1.7; }
-      .cta-group { display:flex;gap:1rem;flex-wrap:wrap;animation:heroFadeIn 1s ease .7s both; }
+      .hero-desc { font-size:.97rem;color:var(--text-muted);margin-bottom:2.5rem;animation:fadeInUp .5s ease .2s both;border-left:3px solid var(--secondary);padding-left:1rem;line-height:1.7; }
+      .cta-group { display:flex;gap:1rem;flex-wrap:wrap;animation:fadeInUp .5s ease .25s both; }
       .cta-button { display:inline-flex;align-items:center;gap:.5rem;padding:.9rem 2.2rem;background:var(--gradient-1);color:white;text-decoration:none;border-radius:50px;font-weight:600;transition:all .4s cubic-bezier(.34,1.56,.64,1);position:relative;overflow:hidden;font-size:.95rem; }
       .cta-button::before { content:"";position:absolute;top:50%;left:50%;width:0;height:0;background:rgba(255,255,255,0.2);border-radius:50%;transform:translate(-50%,-50%);transition:width .5s,height .5s; }
       .cta-button:hover { transform:translateY(-4px) scale(1.02);box-shadow:0 15px 40px rgba(102,126,234,0.5); }
@@ -381,8 +395,7 @@
       .cta-button.outline { background:transparent;border:2px solid rgba(78,205,196,0.5);color:var(--secondary);padding:calc(.9rem - 2px) calc(2.2rem - 2px); }
       .cta-button.outline:hover { background:var(--secondary);color:var(--bg-primary);border-color:var(--secondary);box-shadow:0 15px 40px rgba(78,205,196,0.35); }
 
-      @keyframes heroFadeIn { from{opacity:0.8;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
-      @keyframes fadeInUp { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
+      @keyframes fadeInUp { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
 
       /* ═══════════════════════════════════════
          HERO VISUAL
@@ -718,7 +731,8 @@
           <div class="hero-tag">
             <span class="blink"></span>Jr. Software Developer
           </div>
-          <h1>
+          <!-- h1 is the LCP element — render immediately, no delay -->
+          <h1 style="opacity:1;transform:none;">
             <span class="line1">Hi, I'm</span><span class="line2">Nikitha B</span>
           </h1>
           <p class="hero-subtitle">
@@ -1119,7 +1133,7 @@
       <p class="contact-desc">Open to new opportunities, collaborations, or a simple tech conversation.</p>
       <p class="contact-sub">Whether you want to work together, discuss a technical challenge, or just say hi — I'd love to hear from you!</p>
       <div class="contact-links">
-        <a href="mailto:nikithab2003@gmail.com" class="contact-link"><span>📧 Email Me</span></a>
+        <a href="/cdn-cgi/l/email-protection#3d5354565449555c5f0f0d0d0e7d5a505c5451135e5250" class="contact-link"><span>📧 Email Me</span></a>
         <a href="https://github.com/Nikitha2308" target="_blank" rel="noopener" class="contact-link github-link"><span>💻 GitHub</span></a>
         <a href="https://www.linkedin.com/in/nikitha-nikitha" target="_blank" rel="noopener" class="contact-link linkedin"><span>🔗 LinkedIn</span></a>
         <a href="tel:9123585022" class="contact-link"><span>📱 Call Me</span></a>
@@ -1133,7 +1147,7 @@
           <a href="https://www.linkedin.com/in/nikitha-nikitha" target="_blank" rel="noopener" class="social-icon linkedin-icon" title="LinkedIn">
             <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
           </a>
-          <a href="mailto:nikithab2003@gmail.com" class="social-icon" title="Email">
+          <a href="/cdn-cgi/l/email-protection#95fbfcfefce1fdf4f7a7a5a5a6d5f2f8f4fcf9bbf6faf8" class="social-icon" title="Email">
             <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
           </a>
           <a href="tel:9123585022" class="social-icon" title="Phone">
@@ -1147,7 +1161,7 @@
       <p>© 2026 <strong>Nikitha B</strong> · Built with passion, dedication.</p>
     </footer>
 
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
       /* ═══════════════════════════════════════
          THEME TOGGLE
       ═══════════════════════════════════════ */
@@ -1189,46 +1203,53 @@
       });
 
       /* ═══════════════════════════════════════
-         STARS & PARTICLES (deferred for performance)
+         STARS & PARTICLES (deferred — after load)
       ═══════════════════════════════════════ */
-      const isMobile = window.innerWidth < 768;
-      setTimeout(() => {
-        const sf = document.getElementById("starfield");
-        const starCount = isMobile ? 40 : 120;
-        for(let i=0;i<starCount;i++){
-          const s=document.createElement("div");
-          s.className="star";
-          const sz=Math.random()*2+.5;
-          s.style.cssText=`width:${sz}px;height:${sz}px;left:${Math.random()*100}%;top:${Math.random()*100}%;--dur:${Math.random()*4+2}s;--delay:${Math.random()*6}s;--max-opacity:${Math.random()*.5+.2};`;
-          sf.appendChild(s);
-        }
+      window.addEventListener('load', function() {
+        const isMobile = window.innerWidth < 768;
+        // Defer even further on mobile
+        setTimeout(() => {
+          const sf = document.getElementById("starfield");
+          const starCount = isMobile ? 40 : 100;
+          for(let i=0;i<starCount;i++){
+            const s=document.createElement("div");
+            s.className="star";
+            const sz=Math.random()*2+.5;
+            s.style.cssText=`width:${sz}px;height:${sz}px;left:${Math.random()*100}%;top:${Math.random()*100}%;--dur:${Math.random()*4+2}s;--delay:${Math.random()*6}s;--max-opacity:${Math.random()*.5+.2};`;
+            sf.appendChild(s);
+          }
+        }, isMobile ? 3000 : 500);
 
-        const canvas=document.getElementById("particlesCanvas"),ctx=canvas.getContext("2d");
-        function resizeCanvas(){canvas.width=window.innerWidth;canvas.height=window.innerHeight;}
-        resizeCanvas(); window.addEventListener("resize",resizeCanvas);
-        const particles=[];
-        const particleCount = isMobile ? 20 : 60;
-        class Particle{
-          constructor(){this.reset();}
-          reset(){this.x=Math.random()*canvas.width;this.y=Math.random()*canvas.height;this.vx=(Math.random()-.5)*.3;this.vy=(Math.random()-.5)*.3;this.alpha=Math.random()*.3+.05;this.size=Math.random()*2+.5;this.hue=Math.random()>.5?180:270;}
-          update(){this.x+=this.vx;this.y+=this.vy;if(this.x<0||this.x>canvas.width||this.y<0||this.y>canvas.height)this.reset();}
-          draw(){ctx.beginPath();ctx.arc(this.x,this.y,this.size,0,Math.PI*2);ctx.fillStyle=`hsla(${this.hue},80%,70%,${this.alpha})`;ctx.fill();}
-        }
-        for(let i=0;i<particleCount;i++)particles.push(new Particle());
-        function drawConnections(){
-          for(let i=0;i<particles.length;i++)
-            for(let j=i+1;j<particles.length;j++){
-              const dx=particles[i].x-particles[j].x,dy=particles[i].y-particles[j].y,d=Math.sqrt(dx*dx+dy*dy);
-              if(d<100){ctx.beginPath();ctx.moveTo(particles[i].x,particles[i].y);ctx.lineTo(particles[j].x,particles[j].y);ctx.strokeStyle=`rgba(78,205,196,${.06*(1-d/100)})`;ctx.lineWidth=.5;ctx.stroke();}
-            }
-        }
-        (function animateParticles(){
-          ctx.clearRect(0,0,canvas.width,canvas.height);
-          particles.forEach(p=>{p.update();p.draw();});
-          if(!isMobile) drawConnections();
-          requestAnimationFrame(animateParticles);
-        })();
-      }, 1500);
+        setTimeout(() => {
+          const canvas=document.getElementById("particlesCanvas"),ctx=canvas.getContext("2d");
+          function resizeCanvas(){canvas.width=window.innerWidth;canvas.height=window.innerHeight;}
+          resizeCanvas(); window.addEventListener("resize",resizeCanvas);
+          const isMob = window.innerWidth < 768;
+          const particles=[];
+          const particleCount = isMob ? 20 : 50;
+          class Particle{
+            constructor(){this.reset();}
+            reset(){this.x=Math.random()*canvas.width;this.y=Math.random()*canvas.height;this.vx=(Math.random()-.5)*.3;this.vy=(Math.random()-.5)*.3;this.alpha=Math.random()*.3+.05;this.size=Math.random()*2+.5;this.hue=Math.random()>.5?180:270;}
+            update(){this.x+=this.vx;this.y+=this.vy;if(this.x<0||this.x>canvas.width||this.y<0||this.y>canvas.height)this.reset();}
+            draw(){ctx.beginPath();ctx.arc(this.x,this.y,this.size,0,Math.PI*2);ctx.fillStyle=`hsla(${this.hue},80%,70%,${this.alpha})`;ctx.fill();}
+          }
+          for(let i=0;i<particleCount;i++)particles.push(new Particle());
+          function drawConnections(){
+            if(isMob) return;
+            for(let i=0;i<particles.length;i++)
+              for(let j=i+1;j<particles.length;j++){
+                const dx=particles[i].x-particles[j].x,dy=particles[i].y-particles[j].y,d=Math.sqrt(dx*dx+dy*dy);
+                if(d<100){ctx.beginPath();ctx.moveTo(particles[i].x,particles[i].y);ctx.lineTo(particles[j].x,particles[j].y);ctx.strokeStyle=`rgba(78,205,196,${.06*(1-d/100)})`;ctx.lineWidth=.5;ctx.stroke();}
+              }
+          }
+          (function animateParticles(){
+            ctx.clearRect(0,0,canvas.width,canvas.height);
+            particles.forEach(p=>{p.update();p.draw();});
+            drawConnections();
+            requestAnimationFrame(animateParticles);
+          })();
+        }, isMobile ? 4000 : 1000);
+      });
 
       /* ═══════════════════════════════════════
          SCROLL: PROGRESS + HEADER + BACK TO TOP
@@ -1302,11 +1323,4 @@
           card.style.transform=`translateY(-12px) rotateX(${-dy*6}deg) rotateY(${dx*6}deg) scale(1.01)`;
           card.style.transition="transform .1s ease,box-shadow .4s ease,border-color .3s ease";
         });
-        card.addEventListener("mouseleave",()=>{
-          card.style.transform="";
-          card.style.transition="all .4s cubic-bezier(.34,1.56,.64,1)";
-        });
-      });
-    </script>
-  </body>
-</html>
+        card
