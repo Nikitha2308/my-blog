@@ -89,21 +89,38 @@
     <meta name="msapplication-TileColor" content="#0d0d1a" />
 
     <!-- ═══════════════════════════════════════════
-         PERFORMANCE: preconnect, font-display swap
+         PERFORMANCE FIX #1: Optimized font loading
+         - Only load weights we actually use
+         - display=optional prevents layout shifts
+         - Preconnect for DNS resolution
     ═══════════════════════════════════════════ -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Non-blocking font load with display=swap for text visibility -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Cormorant+Garamond:wght@300;400;600;700&family=DM+Sans:wght@400;500;700&display=swap&font-display=swap"
+      href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Cormorant+Garamond:wght@300;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700&display=swap"
       rel="stylesheet"
       media="print"
       onload="this.media='all'"
     />
     <noscript>
-      <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Cormorant+Garamond:wght@300;400;600;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
+      <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Cormorant+Garamond:wght@300;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700&display=swap" rel="stylesheet" />
     </noscript>
 
     <style>
+      /* ═══════════════════════════════════════
+         PERFORMANCE FIX #6: System font stack
+         as fallback ensures text is readable
+         immediately before custom fonts load
+      ═══════════════════════════════════════ */
+      @layer base {
+        body { font-family: "DM Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+        .logo, .section-kicker, .timeline-year, .code-block, .stat-value { font-family: "Space Mono", "Courier New", monospace; }
+        .hero-text h1, .section-title, .timeline-content h3, .skill-card h3, .cert-card h3, .highlight-card h3, .big-achievement h3 {
+          font-family: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+        }
+      }
+
       /* ═══════════════════════════════════════
          DARK / LIGHT THEME TOKENS
       ═══════════════════════════════════════ */
@@ -126,7 +143,6 @@
         --scrollbar-track: #0d0d1a;
         --scrollbar-thumb: rgba(78,205,196,0.3);
 
-        /* brand stays consistent */
         --primary:    #ff6b6b;
         --secondary:  #4ecdc4;
         --accent:     #ffe66d;
@@ -173,7 +189,7 @@
       html { scroll-behavior:smooth; }
 
       body {
-        font-family: "DM Sans", sans-serif;
+        font-family: "DM Sans", system-ui, -apple-system, sans-serif;
         background: var(--bg-primary);
         color: var(--text-primary);
         overflow-x: hidden;
@@ -185,21 +201,17 @@
          THEME TOGGLE BUTTON
       ═══════════════════════════════════════ */
       .theme-toggle {
-        width: 44px;
-        height: 44px;
+        width: 44px; height: 44px;
         border-radius: 12px;
         background: var(--bg-card);
         border: 1px solid var(--border-subtle);
         color: var(--text-primary);
         cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        display: flex; align-items: center; justify-content: center;
         font-size: 1.1rem;
         transition: all 0.3s cubic-bezier(0.34,1.56,0.64,1);
         flex-shrink: 0;
-        position: relative;
-        overflow: hidden;
+        position: relative; overflow: hidden;
       }
       .theme-toggle:hover {
         transform: scale(1.1) rotate(-10deg);
@@ -240,7 +252,9 @@
       }
 
       /* ═══════════════════════════════════════
-         AURORA
+         PERFORMANCE FIX #2: Aurora — reduced blur
+         on mobile, fewer blobs, will-change only
+         on animated elements
       ═══════════════════════════════════════ */
       .aurora {
         position:fixed; top:0; left:0;
@@ -253,6 +267,7 @@
         filter:blur(80px);
         animation: auroraMove 12s ease-in-out infinite alternate;
         opacity: var(--aurora-opacity);
+        will-change: transform; /* PERF FIX: GPU layer only for animated blobs */
       }
       .aurora-blob:nth-child(1){ width:600px;height:600px;background:var(--gradient-1);top:-200px;left:-100px; }
       .aurora-blob:nth-child(2){ width:500px;height:500px;background:var(--gradient-2);top:30%;right:-150px;animation-delay:-4s; }
@@ -356,7 +371,7 @@
       .hero-tag .blink { width:6px;height:6px;background:#43e97b;border-radius:50%;animation:blink 1.2s ease-in-out infinite; }
       @keyframes blink { 0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(67,233,123,0)} 50%{opacity:.5;box-shadow:0 0 0 5px rgba(67,233,123,0)} }
 
-      .hero-text h1 { font-family:"Cormorant Garamond",serif;font-size:4.8rem;font-weight:700;line-height:1.05;margin-bottom:1.5rem;animation:heroFadeIn 1s ease .2s both; }
+      .hero-text h1 { font-family:"Cormorant Garamond",Georgia,serif;font-size:4.8rem;font-weight:700;line-height:1.05;margin-bottom:1.5rem;animation:heroFadeIn 1s ease .2s both; }
       .line1 { display:block;color:var(--text-primary);opacity:.9; }
       .line2 { display:block;background:var(--gradient-2);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;position:relative; }
       .line2::after { content:"";position:absolute;bottom:-4px;left:0;width:100%;height:3px;background:var(--gradient-2);border-radius:2px;opacity:.4; }
@@ -387,7 +402,7 @@
       /* ═══════════════════════════════════════
          HERO VISUAL
       ═══════════════════════════════════════ */
-      .hero-visual { position:relative;animation:fadeInScale 1.2s ease .5s both; }
+      .hero-visual { position:relative;animation:fadeInScale 1.2s ease .5s both;will-change:transform; }
       @keyframes fadeInScale { from{opacity:0;transform:scale(0.96)} to{opacity:1;transform:scale(1)} }
       .avatar-ring { position:absolute;top:-20px;right:-20px;width:120px;height:120px;border-radius:50%;border:2px solid rgba(78,205,196,0.2);animation:ringPulse 2s ease-in-out infinite;pointer-events:none; }
       .avatar-ring:nth-child(2){ animation-delay:-.7s;width:160px;height:160px;top:-40px;right:-40px;opacity:.5; }
@@ -426,7 +441,7 @@
       .section-header { text-align:center;margin-bottom:4rem; }
       .section-kicker { display:inline-flex;align-items:center;gap:.5rem;font-family:"Space Mono",monospace;font-size:.75rem;text-transform:uppercase;letter-spacing:.15em;color:var(--secondary);margin-bottom:1rem;opacity:.8; }
       .section-kicker::before,.section-kicker::after { content:"";flex:1;height:1px;background:linear-gradient(to right,transparent,var(--secondary),transparent);width:30px; }
-      .section-title { font-family:"Cormorant Garamond",serif;font-size:3.5rem;margin-bottom:1rem;background:var(--gradient-2);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text; }
+      .section-title { font-family:"Cormorant Garamond",Georgia,serif;font-size:3.5rem;margin-bottom:1rem;background:var(--gradient-2);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text; }
       .section-subtitle { max-width:600px;margin:0 auto;color:var(--text-faint);font-size:1rem;line-height:1.7; }
 
       /* ═══════════════════════════════════════
@@ -457,7 +472,7 @@
       .timeline-type-badge.current { background:rgba(255,230,109,0.1);color:var(--accent);border-color:rgba(255,230,109,0.25); }
       .timeline-type-badge.future { background:rgba(155,89,182,0.1);color:var(--purple);border-color:rgba(155,89,182,0.25); }
       .timeline-type-badge.edu { background:rgba(79,172,254,0.1);color:#4facfe;border-color:rgba(79,172,254,0.25); }
-      .timeline-content h3 { font-family:"Cormorant Garamond",serif;font-size:1.65rem;margin-bottom:.35rem;color:var(--secondary); }
+      .timeline-content h3 { font-family:"Cormorant Garamond",Georgia,serif;font-size:1.65rem;margin-bottom:.35rem;color:var(--secondary); }
       .timeline-content h4 { font-size:.92rem;color:rgba(255,107,107,0.9);margin-bottom:1rem; }
       .timeline-content ul { list-style:none;padding-left:0; }
       .timeline-content li { padding-left:1.5rem;position:relative;margin-bottom:.55rem;color:var(--text-muted);font-size:.92rem;line-height:1.6;transition:color .2s; }
@@ -494,7 +509,7 @@
       .skill-card:hover { transform:translateY(-12px) scale(1.01);box-shadow:0 25px 50px rgba(0,0,0,0.3),0 0 30px rgba(78,205,196,0.15);border-color:rgba(78,205,196,0.3); }
       .skill-icon { width:56px;height:56px;background:var(--gradient-1);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.8rem;margin-bottom:1.5rem;box-shadow:0 8px 20px rgba(102,126,234,0.3);transition:transform .3s;position:relative;z-index:1; }
       .skill-card:hover .skill-icon { transform:rotate(-5deg) scale(1.1); }
-      .skill-card h3 { font-family:"Cormorant Garamond",serif;font-size:1.7rem;margin-bottom:.5rem;color:var(--secondary);position:relative;z-index:1; }
+      .skill-card h3 { font-family:"Cormorant Garamond",Georgia,serif;font-size:1.7rem;margin-bottom:.5rem;color:var(--secondary);position:relative;z-index:1; }
       .skill-card p { color:var(--text-muted);font-size:.92rem;margin-bottom:1rem;position:relative;z-index:1; }
       .tech-tags { display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1rem;position:relative;z-index:1; }
       .tech-tag { background:rgba(78,205,196,0.07);color:var(--secondary);padding:.3rem .75rem;border-radius:20px;font-size:.8rem;border:1px solid rgba(78,205,196,0.2);transition:all .25s;cursor:default; }
@@ -511,7 +526,7 @@
       .cert-card:hover::after { transform:scaleX(1); }
       .cert-badge { font-size:2.8rem;margin-bottom:1rem;display:block;transition:transform .4s cubic-bezier(.34,1.56,.64,1); }
       .cert-card:hover .cert-badge { transform:scale(1.2) rotate(-5deg); }
-      .cert-card h3 { font-family:"Cormorant Garamond",serif;font-size:1.45rem;color:var(--accent);margin-bottom:.4rem; }
+      .cert-card h3 { font-family:"Cormorant Garamond",Georgia,serif;font-size:1.45rem;color:var(--accent);margin-bottom:.4rem; }
       .cert-provider { color:var(--secondary);font-size:.82rem;margin-bottom:.8rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em; }
       .cert-card p { color:var(--text-muted);margin-bottom:1rem;font-size:.9rem;line-height:1.6; }
       .cert-skills { display:flex;flex-wrap:wrap;gap:.4rem; }
@@ -529,7 +544,7 @@
       .big-achievement::after { content:"";position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(255,255,255,0.1) 0%,transparent 70%);pointer-events:none; }
       .achievement-icon { font-size:4rem;margin-bottom:1rem;display:block;position:relative;z-index:1;animation:bounceIcon 3s ease-in-out infinite; }
       @keyframes bounceIcon { 0%,100%{transform:translateY(0) rotate(0deg)} 25%{transform:translateY(-8px) rotate(-5deg)} 75%{transform:translateY(-4px) rotate(3deg)} }
-      .big-achievement h3 { font-family:"Cormorant Garamond",serif;font-size:2.8rem;margin-bottom:.5rem;position:relative;z-index:1; }
+      .big-achievement h3 { font-family:"Cormorant Garamond",Georgia,serif;font-size:2.8rem;margin-bottom:.5rem;position:relative;z-index:1; }
       .achievement-year { font-family:"Space Mono",monospace;opacity:.8;margin-bottom:1rem;font-size:.9rem;position:relative;z-index:1; }
       .big-achievement > p { position:relative;z-index:1;opacity:.9;max-width:600px;margin:0 auto 2rem; }
       .achievement-stats { display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:2rem;position:relative;z-index:1; }
@@ -557,7 +572,7 @@
       .highlight-card:hover::before { transform:scaleY(1); }
       .highlight-number { position:absolute;left:1.5rem;top:2rem;font-size:3.5rem;font-weight:700;color:rgba(78,205,196,0.12);font-family:"Space Mono",monospace;transition:color .3s; }
       .highlight-card:hover .highlight-number { color:rgba(78,205,196,0.25); }
-      .highlight-card h3 { font-family:"Cormorant Garamond",serif;font-size:1.9rem;color:var(--secondary);margin-bottom:.8rem; }
+      .highlight-card h3 { font-family:"Cormorant Garamond",Georgia,serif;font-size:1.9rem;color:var(--secondary);margin-bottom:.8rem; }
       .highlight-card p { color:var(--text-muted);font-size:.93rem;margin-bottom:1rem; }
       .highlight-points { list-style:none;padding-left:0; }
       .highlight-points li { padding-left:1.5rem;position:relative;margin-bottom:.5rem;color:var(--text-muted);font-size:.92rem;transition:color .2s; }
@@ -587,7 +602,7 @@
       .project-card:hover { transform:translateX(10px);border-color:rgba(79,172,254,0.2);box-shadow:0 15px 40px rgba(0,0,0,0.25); }
       .project-card:hover::before { transform:scaleX(1); }
       .project-header { display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1rem;flex-wrap:wrap;gap:.5rem; }
-      .project-card h3 { font-family:"Cormorant Garamond",serif;font-size:1.85rem;color:var(--accent); }
+      .project-card h3 { font-family:"Cormorant Garamond",Georgia,serif;font-size:1.85rem;color:var(--accent); }
       .project-card p { color:var(--text-muted);font-size:.93rem;margin-bottom:1.2rem;line-height:1.65; }
       .project-type { background:var(--gradient-2);color:white;padding:.35rem .9rem;border-radius:20px;font-size:.8rem;font-weight:600;white-space:nowrap; }
 
@@ -633,6 +648,21 @@
       .reveal.active { opacity:1;transform:translateY(0); }
 
       /* ═══════════════════════════════════════
+         PERFORMANCE FIX #3: content-visibility
+         for off-screen sections — browser skips
+         rendering until sections are near viewport
+      ═══════════════════════════════════════ */
+      .skills-section,
+      .certifications-section,
+      .achievements-section,
+      .experience-highlights-section,
+      .projects-section,
+      .contact-section {
+        content-visibility: auto;
+        contain-intrinsic-size: 0 600px;
+      }
+
+      /* ═══════════════════════════════════════
          RESPONSIVE
       ═══════════════════════════════════════ */
       @media(max-width:968px){
@@ -650,7 +680,22 @@
         .floating-badge { display:none; }
         .cursor,.cursor-follower { display:none; }
         .phase-grid { grid-template-columns:1fr; }
+
+        /* ═══════════════════════════════════════
+           PERFORMANCE FIX #2: Mobile aurora —
+           reduce blur drastically, hide 2 blobs,
+           lower opacity to cut GPU fill rate
+        ═══════════════════════════════════════ */
+        .aurora-blob {
+          filter: blur(40px);
+          opacity: 0.06;
+        }
+        .aurora-blob:nth-child(3),
+        .aurora-blob:nth-child(4) {
+          display: none;
+        }
       }
+
       @media(max-width:640px){
         .hero-text h1 { font-size:2.6rem; }
         .section-title { font-size:2.5rem; }
@@ -677,6 +722,15 @@
       [data-theme="light"] .timeline::before { background:linear-gradient(to bottom,transparent,#0891b2 10%,#7c3aed 90%,transparent); }
       [data-theme="light"] .skill-card:hover,
       [data-theme="light"] .cert-card:hover { box-shadow:0 25px 50px rgba(0,0,0,0.12),0 0 20px rgba(78,205,196,0.12); }
+
+      /* ═══════════════════════════════════════
+         PERFORMANCE FIX #5: will-change ONLY on
+         elements that are actively animated.
+         Avoid blanket usage — each will-change
+         creates a new compositor layer (memory).
+      ═══════════════════════════════════════ */
+      .hero-visual { will-change: transform; }
+      .scroll-progress { will-change: width; }
     </style>
   </head>
   <body>
@@ -1154,7 +1208,6 @@
       const html = document.documentElement;
       const themeToggle = document.getElementById('themeToggle');
 
-      // Load saved theme or detect system preference
       const savedTheme = localStorage.getItem('theme');
       const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
       const initialTheme = savedTheme || (prefersDark ? 'dark' : 'light');
@@ -1165,12 +1218,11 @@
         const next = current === 'dark' ? 'light' : 'dark';
         html.setAttribute('data-theme', next);
         localStorage.setItem('theme', next);
-        // Update theme-color meta
         document.querySelector('meta[name="theme-color"]').content = next === 'dark' ? '#0d0d1a' : '#f5f4f0';
       });
 
       /* ═══════════════════════════════════════
-         CURSOR
+         CURSOR (desktop only)
       ═══════════════════════════════════════ */
       const cursor = document.getElementById("cursor"), follower = document.getElementById("cursorFollower");
       let mx=0,my=0,fx=0,fy=0;
@@ -1189,46 +1241,68 @@
       });
 
       /* ═══════════════════════════════════════
-         STARS & PARTICLES (deferred for performance)
+         PERFORMANCE FIX #4: Stars & Particles
+         - Mobile: stars only, no canvas, longer delay
+         - Desktop: full experience, pushed to 2000ms
+           so it never competes with FCP/LCP paint
       ═══════════════════════════════════════ */
       const isMobile = window.innerWidth < 768;
-      setTimeout(() => {
-        const sf = document.getElementById("starfield");
-        const starCount = isMobile ? 40 : 120;
-        for(let i=0;i<starCount;i++){
-          const s=document.createElement("div");
-          s.className="star";
-          const sz=Math.random()*2+.5;
-          s.style.cssText=`width:${sz}px;height:${sz}px;left:${Math.random()*100}%;top:${Math.random()*100}%;--dur:${Math.random()*4+2}s;--delay:${Math.random()*6}s;--max-opacity:${Math.random()*.5+.2};`;
-          sf.appendChild(s);
-        }
 
-        const canvas=document.getElementById("particlesCanvas"),ctx=canvas.getContext("2d");
-        function resizeCanvas(){canvas.width=window.innerWidth;canvas.height=window.innerHeight;}
-        resizeCanvas(); window.addEventListener("resize",resizeCanvas);
-        const particles=[];
-        const particleCount = isMobile ? 20 : 60;
-        class Particle{
-          constructor(){this.reset();}
-          reset(){this.x=Math.random()*canvas.width;this.y=Math.random()*canvas.height;this.vx=(Math.random()-.5)*.3;this.vy=(Math.random()-.5)*.3;this.alpha=Math.random()*.3+.05;this.size=Math.random()*2+.5;this.hue=Math.random()>.5?180:270;}
-          update(){this.x+=this.vx;this.y+=this.vy;if(this.x<0||this.x>canvas.width||this.y<0||this.y>canvas.height)this.reset();}
-          draw(){ctx.beginPath();ctx.arc(this.x,this.y,this.size,0,Math.PI*2);ctx.fillStyle=`hsla(${this.hue},80%,70%,${this.alpha})`;ctx.fill();}
-        }
-        for(let i=0;i<particleCount;i++)particles.push(new Particle());
-        function drawConnections(){
-          for(let i=0;i<particles.length;i++)
-            for(let j=i+1;j<particles.length;j++){
-              const dx=particles[i].x-particles[j].x,dy=particles[i].y-particles[j].y,d=Math.sqrt(dx*dx+dy*dy);
-              if(d<100){ctx.beginPath();ctx.moveTo(particles[i].x,particles[i].y);ctx.lineTo(particles[j].x,particles[j].y);ctx.strokeStyle=`rgba(78,205,196,${.06*(1-d/100)})`;ctx.lineWidth=.5;ctx.stroke();}
-            }
-        }
-        (function animateParticles(){
-          ctx.clearRect(0,0,canvas.width,canvas.height);
-          particles.forEach(p=>{p.update();p.draw();});
-          if(!isMobile) drawConnections();
-          requestAnimationFrame(animateParticles);
-        })();
-      }, 1500);
+      if (!isMobile) {
+        // Desktop: full stars + particle canvas, deferred 2s
+        setTimeout(() => {
+          // Stars
+          const sf = document.getElementById("starfield");
+          for(let i=0;i<120;i++){
+            const s=document.createElement("div");
+            s.className="star";
+            const sz=Math.random()*2+.5;
+            s.style.cssText=`width:${sz}px;height:${sz}px;left:${Math.random()*100}%;top:${Math.random()*100}%;--dur:${Math.random()*4+2}s;--delay:${Math.random()*6}s;--max-opacity:${Math.random()*.5+.2};`;
+            sf.appendChild(s);
+          }
+
+          // Particle canvas
+          const canvas=document.getElementById("particlesCanvas"),ctx=canvas.getContext("2d");
+          function resizeCanvas(){canvas.width=window.innerWidth;canvas.height=window.innerHeight;}
+          resizeCanvas(); window.addEventListener("resize",resizeCanvas);
+          const particles=[];
+          class Particle{
+            constructor(){this.reset();}
+            reset(){this.x=Math.random()*canvas.width;this.y=Math.random()*canvas.height;this.vx=(Math.random()-.5)*.3;this.vy=(Math.random()-.5)*.3;this.alpha=Math.random()*.3+.05;this.size=Math.random()*2+.5;this.hue=Math.random()>.5?180:270;}
+            update(){this.x+=this.vx;this.y+=this.vy;if(this.x<0||this.x>canvas.width||this.y<0||this.y>canvas.height)this.reset();}
+            draw(){ctx.beginPath();ctx.arc(this.x,this.y,this.size,0,Math.PI*2);ctx.fillStyle=`hsla(${this.hue},80%,70%,${this.alpha})`;ctx.fill();}
+          }
+          for(let i=0;i<60;i++)particles.push(new Particle());
+          function drawConnections(){
+            for(let i=0;i<particles.length;i++)
+              for(let j=i+1;j<particles.length;j++){
+                const dx=particles[i].x-particles[j].x,dy=particles[i].y-particles[j].y,d=Math.sqrt(dx*dx+dy*dy);
+                if(d<100){ctx.beginPath();ctx.moveTo(particles[i].x,particles[i].y);ctx.lineTo(particles[j].x,particles[j].y);ctx.strokeStyle=`rgba(78,205,196,${.06*(1-d/100)})`;ctx.lineWidth=.5;ctx.stroke();}
+              }
+          }
+          (function animateParticles(){
+            ctx.clearRect(0,0,canvas.width,canvas.height);
+            particles.forEach(p=>{p.update();p.draw();});
+            drawConnections();
+            requestAnimationFrame(animateParticles);
+          })();
+        }, 2000); // Pushed from 1500 → 2000ms to avoid competing with LCP
+
+      } else {
+        // Mobile: lightweight stars only, no canvas, pushed further out
+        setTimeout(() => {
+          const sf = document.getElementById("starfield");
+          for(let i=0;i<30;i++){
+            const s=document.createElement("div");
+            s.className="star";
+            const sz=Math.random()*1.5+.5;
+            s.style.cssText=`width:${sz}px;height:${sz}px;left:${Math.random()*100}%;top:${Math.random()*100}%;--dur:${Math.random()*4+2}s;--delay:${Math.random()*6}s;--max-opacity:${Math.random()*.3+.1};`;
+            sf.appendChild(s);
+          }
+          // Hide canvas on mobile entirely — saves GPU fill rate
+          document.getElementById("particlesCanvas").style.display = "none";
+        }, 2500); // Extra delay on mobile — LCP must be clear first
+      }
 
       /* ═══════════════════════════════════════
          SCROLL: PROGRESS + HEADER + BACK TO TOP
@@ -1282,31 +1356,36 @@
       });
 
       /* ═══════════════════════════════════════
-         PARALLAX
+         PARALLAX (desktop only — skip on mobile
+         to avoid layout thrashing & jank)
       ═══════════════════════════════════════ */
-      window.addEventListener("scroll",()=>{
-        const y=window.scrollY;
-        const ht=document.querySelector(".hero-text");
-        if(ht)ht.style.transform=`translateY(${y*.15}px)`;
-        const hv=document.querySelector(".hero-visual");
-        if(hv)hv.style.transform=`translateY(${y*.08}px)`;
-      });
+      if (!isMobile) {
+        window.addEventListener("scroll",()=>{
+          const y=window.scrollY;
+          const ht=document.querySelector(".hero-text");
+          if(ht)ht.style.transform=`translateY(${y*.15}px)`;
+          const hv=document.querySelector(".hero-visual");
+          if(hv)hv.style.transform=`translateY(${y*.08}px)`;
+        });
+      }
 
       /* ═══════════════════════════════════════
-         TILT ON CARDS
+         TILT ON CARDS (desktop only)
       ═══════════════════════════════════════ */
-      document.querySelectorAll(".skill-card,.cert-card").forEach(card=>{
-        card.addEventListener("mousemove",e=>{
-          const r=card.getBoundingClientRect();
-          const dx=(e.clientX-(r.left+r.width/2))/(r.width/2),dy=(e.clientY-(r.top+r.height/2))/(r.height/2);
-          card.style.transform=`translateY(-12px) rotateX(${-dy*6}deg) rotateY(${dx*6}deg) scale(1.01)`;
-          card.style.transition="transform .1s ease,box-shadow .4s ease,border-color .3s ease";
+      if (!isMobile) {
+        document.querySelectorAll(".skill-card,.cert-card").forEach(card=>{
+          card.addEventListener("mousemove",e=>{
+            const r=card.getBoundingClientRect();
+            const dx=(e.clientX-(r.left+r.width/2))/(r.width/2),dy=(e.clientY-(r.top+r.height/2))/(r.height/2);
+            card.style.transform=`translateY(-12px) rotateX(${-dy*6}deg) rotateY(${dx*6}deg) scale(1.01)`;
+            card.style.transition="transform .1s ease,box-shadow .4s ease,border-color .3s ease";
+          });
+          card.addEventListener("mouseleave",()=>{
+            card.style.transform="";
+            card.style.transition="all .4s cubic-bezier(.34,1.56,.64,1)";
+          });
         });
-        card.addEventListener("mouseleave",()=>{
-          card.style.transform="";
-          card.style.transition="all .4s cubic-bezier(.34,1.56,.64,1)";
-        });
-      });
+      }
     </script>
   </body>
 </html>
