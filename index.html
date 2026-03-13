@@ -260,29 +260,6 @@
       .cursor-blink{display:inline-block;width:2px;height:1em;background:var(--secondary);vertical-align:middle;animation:cursorBlink 1s step-end infinite;margin-left:2px;}
       @keyframes cursorBlink{50%{opacity:0}}
 
-      .typewriter-name .tl {
-        display: inline-block;
-        opacity: 0;
-        transform: translateY(18px) scale(.85);
-        animation: letterIn .38s cubic-bezier(.34,1.56,.64,1) forwards;
-      }
-      @keyframes letterIn {
-        to { opacity: 1; transform: none; }
-      }
-      .tw-cursor {
-        display: inline-block;
-        width: 3px;
-        height: .85em;
-        background: var(--g2);
-        vertical-align: middle;
-        margin-left: 3px;
-        border-radius: 2px;
-        animation: twBlink .8s step-end infinite;
-        transition: opacity .5s ease 1s;
-      }
-      .tw-cursor.done { animation: none; opacity: 0; }
-      @keyframes twBlink { 0%, 100% { opacity: 1 } 50% { opacity: 0 } }
-
       /* ── TICKER ── */
       .ticker-wrap{position:absolute;bottom:0;left:0;right:0;overflow:hidden;height:44px;background:rgba(78,205,196,0.05);border-top:1px solid rgba(78,205,196,0.1);display:flex;align-items:center;}
       .ticker{display:flex;gap:4rem;white-space:nowrap;animation:ticker 25s linear infinite;}
@@ -613,11 +590,7 @@
             <span class="blink"></span>Jr. Software Developer
           </div>
           <h1>
-            <span class="line1">Hi, I'm</span>
-            <span class="line2">
-                <span class="typewriter-name" id="twName" aria-label="Nikitha B"></span>
-                <span class="tw-cursor" aria-hidden="true"></span>
-            </span>
+            <span class="line1">Hi, I'm</span><span class="line2">Nikitha B</span>
           </h1>
           <p class="hero-subtitle">
             <span>Jr. Software Developer</span><span class="sep">·</span>
@@ -1252,28 +1225,6 @@
           });
         });
       }
-
-      (function(){
-  var name = "Nikitha B";
-  var container = document.getElementById('twName');
-  var cursor = document.querySelector('.tw-cursor');
-  if (!container) return;
-
-  var baseDelay = 500;   // wait 500ms before first letter
-  var perLetter = 80;    // 80ms between each letter
-
-  name.split('').forEach(function(ch, i){
-    var s = document.createElement('span');
-    s.className = 'tl';
-    s.textContent = ch === ' ' ? '\u00A0' : ch;
-    s.style.animationDelay = (baseDelay + i * perLetter) + 'ms';
-    container.appendChild(s);
-  });
-
-  // Stop cursor blink after last letter lands
-  var totalTime = baseDelay + name.length * perLetter + 400;
-  setTimeout(function(){ if (cursor) cursor.classList.add('done'); }, totalTime);
-})();
     </script>
   </body>
 </html>
